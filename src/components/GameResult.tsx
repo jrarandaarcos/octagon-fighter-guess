@@ -24,6 +24,11 @@ const GameResult: React.FC = () => {
     }
   }, [isGameOver, open]);
 
+  // Early return if dailyFighter is null
+  if (!dailyFighter) {
+    return null; // Don't render anything if dailyFighter is null
+  }
+
   return (
     <>
       {isWin && <Confetti />}

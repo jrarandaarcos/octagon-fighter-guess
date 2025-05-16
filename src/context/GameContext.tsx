@@ -56,7 +56,7 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
     maxAttempts: 6,
     currentHint: null,
   });
-
+  
   const [gameStats, setGameStats] = useState<GameStats>({
     gamesPlayed: 0,
     gamesWon: 0,
@@ -91,38 +91,10 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       // It's a new day, start a fresh game
       const daily = getDaily(fighters, currentDate);
       
-      setGameState({
-        dailyFighter: daily,
-        guesses: [],
-        guessResults: [],
-        isGameOver: false,
-        isWin: false,
-        maxAttempts: 6,
-        currentHint: null,
-      });
-      
-      // Add previous day's fighter to past fighters if it exists
-      if (lastPlayed) {
-        const previousGameState = loadGameState();
-        if (previousGameState && previousGameState.dailyFighter) {
-          addToPastFighters(
-            lastPlayed, 
-            previousGameState.dailyFighter.name, 
-            previousGameState.isWin
-          );
-        }
-      }
-    } else {
-      // Same day, load saved state
-      const savedState = loadGameState();
-      if (savedState) {
-        setGameState({
-          ...savedState,
-          dailyFighter: savedState.dailyFighter || getDaily(fighters, currentDate),
-        });
-      } else {
-        // Fallback if no saved state
-        const daily = getDaily(fighters, currentDate);
+      // Make sure we have a valid daily fighter
+      if (daily) {
+        console.log("New daily fighter loaded:", daily.name);
+        
         setGameState({
           dailyFighter: daily,
           guesses: [],
@@ -132,6 +104,67 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
           maxAttempts: 6,
           currentHint: null,
         });
+        
+        // Add previous day's fighter to past fighters if it exists
+        if (lastPlayed) {
+          const previousGameState = loadGameState();
+          if (previousGameState && previousGameState.dailyFighter) {
+            addToPastFighters(
+              lastPlayed, 
+              previousGameState.dailyFighter.name, 
+              previousGameState.isWin
+            );
+          }
+        }
+      } else {
+        console.error("Failed to load daily fighter");
+        // Provide a fallback fighter
+        const fallbackFighter = fighters[0];
+        setGameState({
+          dailyFighter: fallbackFighter,
+          guesses: [],
+          guessResults: [],
+          isGameOver: false,
+          isWin: false,
+          maxAttempts: 6,
+          currentHint: null,
+        });
+      }
+    } else {
+      // Same day, load saved state
+      const savedState = loadGameState();
+      if (savedState && savedState.dailyFighter) {
+        console.log("Loaded saved game state with fighter:", savedState.dailyFighter.name);
+        setGameState(savedState);
+      } else {
+        // Fallback if no saved state or invalid daily fighter
+        console.log("No valid saved state, getting new daily fighter");
+        const daily = getDaily(fighters, currentDate);
+        
+        // Double check we have a valid daily fighter
+        if (daily) {
+          setGameState({
+            dailyFighter: daily,
+            guesses: [],
+            guessResults: [],
+            isGameOver: false,
+            isWin: false,
+            maxAttempts: 6,
+            currentHint: null,
+          });
+        } else {
+          console.error("Failed to load daily fighter on fallback");
+          // Use the first fighter as a last resort
+          setGameState({
+            dailyFighter: fighters[0],
+            guesses: [],
+            guessResults: [],
+            isGameOver: false,
+            isWin: false,
+            maxAttempts: 6,
+            currentHint: null,
+          });
+        }
       }
     }
   };

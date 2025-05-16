@@ -6,7 +6,16 @@ import GuessRow from './GuessRow';
 
 const GameBoard: React.FC = () => {
   const { gameState } = useGameContext();
-  const { guesses, guessResults, maxAttempts } = gameState;
+  const { guesses, guessResults, maxAttempts, dailyFighter } = gameState;
+
+  // Early return if dailyFighter is null to prevent rendering until it's loaded
+  if (!dailyFighter) {
+    return (
+      <div className="w-full max-w-3xl mx-auto p-4 flex justify-center items-center h-64">
+        <div className="text-muted-foreground">Loading game...</div>
+      </div>
+    );
+  }
   
   // Create empty rows for remaining attempts
   const emptyRows = [];
