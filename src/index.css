@@ -101,18 +101,22 @@
   }
   
   .cell-correct {
-    @apply bg-green-500 text-white border-green-600;
+    @apply bg-green-600 text-white border-green-700 font-medium shadow-inner;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
   
   .cell-close {
-    @apply bg-yellow-400 text-black border-yellow-500;
+    @apply bg-yellow-500 text-black border-yellow-600 font-medium shadow-inner;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
   }
   
   .cell-incorrect {
-    @apply bg-red-500 text-white border-red-600;
+    @apply bg-red-600 text-white border-red-700 font-medium shadow-inner;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
   
   .cell-empty {
     @apply bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600;
   }
 }
+

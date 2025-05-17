@@ -44,22 +44,16 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result }) => {
           'incorrect': 'cell-incorrect',
         };
         
-        // On small screens, abbreviate some values to fit better
-        let displayValue = value;
-        if (typeof displayValue === 'string' && displayValue.length > 12 && window.innerWidth < 640) {
-          displayValue = displayValue.substring(0, 12) + '...';
-        }
-
         return (
           <div
             key={key}
             className={cn(
-              "h-12 border rounded flex items-center justify-center p-1 text-center text-sm transition-colors duration-300",
+              "h-12 border rounded flex items-center justify-center p-1 text-center text-xs md:text-sm transition-colors duration-300",
               cellClasses[cellResult]
             )}
-            title={String(value)} // Show full value on hover
+            title={String(value)}
           >
-            <span className="truncate">{displayValue}</span>
+            <span className="px-1">{value}</span>
           </div>
         );
       })}
