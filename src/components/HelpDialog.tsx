@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 
 interface HelpDialogProps {
   open: boolean;
@@ -33,16 +34,36 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ open, onOpenChange }) => {
             <h3 className="font-bold mb-1">Feedback Colors:</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-green-500 rounded"></div>
+                <div className="w-5 h-5 bg-green-600 rounded"></div>
                 <span>Green: Correct attribute</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-yellow-400 rounded"></div>
-                <span>Yellow: Close attribute (similar value)</span>
+                <div className="w-5 h-5 bg-yellow-500 rounded"></div>
+                <span>Yellow: Close attribute (only for Debut Year)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-red-500 rounded"></div>
+                <div className="w-5 h-5 bg-red-600 rounded"></div>
                 <span>Red: Incorrect attribute</span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="font-bold mb-1">Debut Year Hints:</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
+                  <span>2015</span>
+                  <ArrowUp size={16} className="ml-1 text-black" />
+                </div>
+                <span>Your guess is too low - fighter debuted later</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
+                  <span>2015</span>
+                  <ArrowDown size={16} className="ml-1 text-black" />
+                </div>
+                <span>Your guess is too high - fighter debuted earlier</span>
               </div>
             </div>
           </div>
@@ -55,8 +76,6 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ open, onOpenChange }) => {
               <li>Division: Fighter's weight class</li>
               <li>Debut Year: Year of UFC debut</li>
               <li>Debut Event: First UFC event</li>
-              <li>Record: Win-Loss-Draw record</li>
-              <li>Fighting Style: Primary fighting background</li>
             </ul>
           </div>
           

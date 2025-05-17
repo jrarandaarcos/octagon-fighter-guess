@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 220 14% 96%;
+    --foreground: 220 10% 10%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
@@ -47,14 +47,15 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+  /* Dark mode by default */
+  :root {
+    --background: 220 15% 12%;
+    --foreground: 220 10% 98%;
 
-    --card: 0 0% 3.9%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 3.9%;
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 355 83% 57%;
@@ -72,11 +73,11 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
     --ring: 355 83% 57%;
     
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 240 10% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -107,7 +108,7 @@
   
   .cell-close {
     @apply bg-yellow-500 text-black border-yellow-600 font-medium shadow-inner;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.4);
   }
   
   .cell-incorrect {
@@ -116,7 +117,6 @@
   }
   
   .cell-empty {
-    @apply bg-gray-200 dark:bg-gray-700 border-gray-300 dark:border-gray-600;
+    @apply bg-gray-700 dark:bg-gray-800 border-gray-600 dark:border-gray-700;
   }
 }
-
