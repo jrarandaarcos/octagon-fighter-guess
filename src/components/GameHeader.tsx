@@ -50,7 +50,7 @@ const GameHeader: React.FC = () => {
           <BarChart2 size={20} />
         </Button>
         
-        {gameState.isGameOver && (
+        {gameState.isGameOver && gameState.dailyFighter && (
           <Button 
             size="icon" 
             variant="ghost"

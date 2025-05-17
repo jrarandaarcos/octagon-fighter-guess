@@ -18,6 +18,11 @@ const ShareDialog: React.FC<ShareDialogProps> = ({ open, onOpenChange }) => {
   const { guesses, guessResults, isWin, maxAttempts, dailyFighter } = gameState;
   const [copied, setCopied] = useState(false);
   
+  // Early return if dailyFighter is null
+  if (!dailyFighter) {
+    return null;
+  }
+  
   // Generate the share text
   const shareText = formatShareResult(
     guesses.length,
