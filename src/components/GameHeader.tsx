@@ -23,43 +23,46 @@ const GameHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="flex items-center justify-between w-full px-4 py-3 border-b border-gray-200 dark:border-gray-800">
-      <div className="flex items-center gap-2">
-        <div className="octagon bg-ufc-red h-8 w-8 p-1 flex items-center justify-center">
-          <span className="text-white font-bold text-xs">UFC</span>
+    <header className="flex flex-col items-center justify-center w-full px-4 py-3 border-b border-gray-200 dark:border-gray-800">
+      <div className="w-full flex items-center justify-between">
+        <div className="flex-1"></div>
+        <div className="flex items-center gap-2 justify-center">
+          <div className="octagon bg-ufc-red h-8 w-8 p-1 flex items-center justify-center">
+            <span className="text-white font-bold text-xs">UFC</span>
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight">GuessTheFighter</h1>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">UFCdle</h1>
-      </div>
-      
-      <div className="flex items-center gap-2">
-        <Button 
-          size="icon" 
-          variant="ghost"
-          onClick={() => setShowHelp(true)}
-          title="How to play"
-        >
-          <HelpCircle size={20} />
-        </Button>
         
-        <Button 
-          size="icon" 
-          variant="ghost"
-          onClick={() => setShowStats(true)} 
-          title="Statistics"
-        >
-          <BarChart2 size={20} />
-        </Button>
-        
-        {gameState.isGameOver && gameState.dailyFighter && (
+        <div className="flex-1 flex items-center justify-end gap-2">
           <Button 
             size="icon" 
             variant="ghost"
-            onClick={() => setShowShare(true)}
-            title="Share"
+            onClick={() => setShowHelp(true)}
+            title="How to play"
           >
-            <Share2 size={20} />
+            <HelpCircle size={20} />
           </Button>
-        )}
+          
+          <Button 
+            size="icon" 
+            variant="ghost"
+            onClick={() => setShowStats(true)} 
+            title="Statistics"
+          >
+            <BarChart2 size={20} />
+          </Button>
+          
+          {gameState.isGameOver && gameState.dailyFighter && (
+            <Button 
+              size="icon" 
+              variant="ghost"
+              onClick={() => setShowShare(true)}
+              title="Share"
+            >
+              <Share2 size={20} />
+            </Button>
+          )}
+        </div>
       </div>
       
       <StatsDialog open={showStats} onOpenChange={setShowStats} />

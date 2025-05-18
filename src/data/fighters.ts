@@ -1,4 +1,3 @@
-
 export interface Fighter {
   id: number;
   name: string;
@@ -10,7 +9,7 @@ export interface Fighter {
   fightingStyle: string;
 }
 
-// 100 UFC fighters with updated information for 2025
+// 150 UFC fighters with updated information for 2025
 export const fighters: Fighter[] = [
   {
     id: 1,
@@ -1011,5 +1010,505 @@ export const fighters: Fighter[] = [
     debutEvent: "The Ultimate Fighter 15 Finale",
     record: "18-7-0",
     fightingStyle: "BJJ, Wrestling"
+  },
+  {
+    id: 101,
+    name: "Nate Diaz",
+    country: "United States",
+    division: "Welterweight",
+    debutYear: 2007,
+    debutEvent: "The Ultimate Fighter 5 Finale",
+    record: "21-13-0",
+    fightingStyle: "Boxing, BJJ"
+  },
+  {
+    id: 102,
+    name: "Jorge Masvidal",
+    country: "United States",
+    division: "Welterweight",
+    debutYear: 2013,
+    debutEvent: "UFC on Fox 7",
+    record: "35-17-0",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 103,
+    name: "Marlon Vera",
+    country: "Ecuador",
+    division: "Bantamweight",
+    debutYear: 2014,
+    debutEvent: "UFC 180",
+    record: "22-8-1",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 104,
+    name: "Khabib Nurmagomedov",
+    country: "Russia",
+    division: "Lightweight",
+    debutYear: 2012,
+    debutEvent: "UFC on FX 1",
+    record: "29-0-0",
+    fightingStyle: "Sambo, Wrestling"
+  },
+  {
+    id: 105,
+    name: "Georges St-Pierre",
+    country: "Canada",
+    division: "Welterweight",
+    debutYear: 2004,
+    debutEvent: "UFC 46",
+    record: "26-2-0",
+    fightingStyle: "Karate, Wrestling"
+  },
+  {
+    id: 106,
+    name: "Miesha Tate",
+    country: "United States",
+    division: "Women's Bantamweight",
+    debutYear: 2013,
+    debutEvent: "UFC 168",
+    record: "23-9-0",
+    fightingStyle: "Wrestling, Boxing"
+  },
+  {
+    id: 107,
+    name: "Angela Hill",
+    country: "United States",
+    division: "Women's Strawweight",
+    debutYear: 2014,
+    debutEvent: "The Ultimate Fighter 20 Finale",
+    record: "16-13-0",
+    fightingStyle: "Muay Thai"
+  },
+  {
+    id: 108,
+    name: "Alexander Gustafsson",
+    country: "Sweden",
+    division: "Light Heavyweight",
+    debutYear: 2009,
+    debutEvent: "UFC 105",
+    record: "18-8-0",
+    fightingStyle: "Boxing, Kickboxing"
+  },
+  {
+    id: 109,
+    name: "Ronda Rousey",
+    country: "United States",
+    division: "Women's Bantamweight",
+    debutYear: 2013,
+    debutEvent: "UFC 157",
+    record: "12-2-0",
+    fightingStyle: "Judo, Striking"
+  },
+  {
+    id: 110,
+    name: "Cris Cyborg",
+    country: "Brazil",
+    division: "Women's Featherweight",
+    debutYear: 2016,
+    debutEvent: "UFC 198",
+    record: "26-2-0",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 111,
+    name: "Yoel Romero",
+    country: "Cuba",
+    division: "Middleweight",
+    debutYear: 2013,
+    debutEvent: "UFC on Fox 7",
+    record: "14-6-0",
+    fightingStyle: "Wrestling, Boxing"
+  },
+  {
+    id: 112,
+    name: "Anderson Silva",
+    country: "Brazil",
+    division: "Middleweight",
+    debutYear: 2006,
+    debutEvent: "UFC Fight Night 5",
+    record: "34-11-0",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 113,
+    name: "Demetrious Johnson",
+    country: "United States",
+    division: "Flyweight",
+    debutYear: 2011,
+    debutEvent: "UFC 126",
+    record: "30-4-1",
+    fightingStyle: "Wrestling, Striking"
+  },
+  {
+    id: 114,
+    name: "Rashad Evans",
+    country: "United States",
+    division: "Light Heavyweight",
+    debutYear: 2005,
+    debutEvent: "The Ultimate Fighter 2 Finale",
+    record: "20-8-1",
+    fightingStyle: "Wrestling, Boxing"
+  },
+  {
+    id: 115,
+    name: "Stipe Miocic",
+    country: "United States",
+    division: "Heavyweight",
+    debutYear: 2011,
+    debutEvent: "UFC 136",
+    record: "20-4-0",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 116,
+    name: "Daniel Cormier",
+    country: "United States",
+    division: "Heavyweight",
+    debutYear: 2013,
+    debutEvent: "UFC on Fox 7",
+    record: "22-3-0",
+    fightingStyle: "Wrestling, Boxing"
+  },
+  {
+    id: 117,
+    name: "Lyoto Machida",
+    country: "Brazil",
+    division: "Middleweight",
+    debutYear: 2007,
+    debutEvent: "UFC 67",
+    record: "26-12-0",
+    fightingStyle: "Karate, BJJ"
+  },
+  {
+    id: 118,
+    name: "Frankie Edgar",
+    country: "United States",
+    division: "Bantamweight",
+    debutYear: 2007,
+    debutEvent: "UFC 67",
+    record: "24-11-1",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 119,
+    name: "BJ Penn",
+    country: "United States",
+    division: "Welterweight",
+    debutYear: 2001,
+    debutEvent: "UFC 31",
+    record: "16-14-2",
+    fightingStyle: "Boxing, BJJ"
+  },
+  {
+    id: 120,
+    name: "Joanna Jędrzejczyk",
+    country: "Poland",
+    division: "Women's Strawweight",
+    debutYear: 2014,
+    debutEvent: "UFC on Fox 12",
+    record: "16-5-0",
+    fightingStyle: "Muay Thai"
+  },
+  {
+    id: 121,
+    name: "Paige VanZant",
+    country: "United States",
+    division: "Women's Flyweight",
+    debutYear: 2014,
+    debutEvent: "UFC Fight Night 57",
+    record: "8-5-0",
+    fightingStyle: "Kickboxing, Wrestling"
+  },
+  {
+    id: 122,
+    name: "Marvin Vettori",
+    country: "Italy",
+    division: "Middleweight",
+    debutYear: 2016,
+    debutEvent: "UFC 202",
+    record: "19-7-1",
+    fightingStyle: "Kickboxing, BJJ"
+  },
+  {
+    id: 123,
+    name: "Molly McCann",
+    country: "United Kingdom",
+    division: "Women's Flyweight",
+    debutYear: 2018,
+    debutEvent: "UFC Fight Night 127",
+    record: "14-6-0",
+    fightingStyle: "Boxing, Judo"
+  },
+  {
+    id: 124,
+    name: "Johnny Walker",
+    country: "Brazil",
+    division: "Light Heavyweight",
+    debutYear: 2018,
+    debutEvent: "UFC Fight Night 140",
+    record: "21-8-0",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 125,
+    name: "Carlos Condit",
+    country: "United States",
+    division: "Welterweight",
+    debutYear: 2009,
+    debutEvent: "UFC 93",
+    record: "32-14-0",
+    fightingStyle: "Kickboxing, BJJ"
+  },
+  {
+    id: 126,
+    name: "Cub Swanson",
+    country: "United States",
+    division: "Featherweight",
+    debutYear: 2011,
+    debutEvent: "UFC on Fox 1",
+    record: "29-13-0",
+    fightingStyle: "Kickboxing, BJJ"
+  },
+  {
+    id: 127,
+    name: "T.J. Dillashaw",
+    country: "United States",
+    division: "Bantamweight",
+    debutYear: 2011,
+    debutEvent: "The Ultimate Fighter 14 Finale",
+    record: "18-5-0",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 128,
+    name: "Holly Holm",
+    country: "United States",
+    division: "Women's Bantamweight",
+    debutYear: 2015,
+    debutEvent: "UFC 184",
+    record: "15-6-0",
+    fightingStyle: "Boxing, Kickboxing"
+  },
+  {
+    id: 129,
+    name: "Cody Garbrandt",
+    country: "United States",
+    division: "Bantamweight",
+    debutYear: 2015,
+    debutEvent: "UFC 189",
+    record: "13-6-0",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 130,
+    name: "Dan Hardy",
+    country: "United Kingdom",
+    division: "Welterweight",
+    debutYear: 2008,
+    debutEvent: "UFC 89",
+    record: "25-10-0",
+    fightingStyle: "Striking, Taekwondo"
+  },
+  {
+    id: 131,
+    name: "Darren Till",
+    country: "United Kingdom",
+    division: "Middleweight",
+    debutYear: 2015,
+    debutEvent: "UFC Fight Night 67",
+    record: "18-5-1",
+    fightingStyle: "Muay Thai"
+  },
+  {
+    id: 132,
+    name: "Dominick Reyes",
+    country: "United States",
+    division: "Light Heavyweight",
+    debutYear: 2017,
+    debutEvent: "UFC Fight Night 112",
+    record: "12-4-0",
+    fightingStyle: "Kickboxing, Wrestling"
+  },
+  {
+    id: 133,
+    name: "Anthony Smith",
+    country: "United States",
+    division: "Light Heavyweight",
+    debutYear: 2013,
+    debutEvent: "UFC on Fuel TV 10",
+    record: "37-19-0",
+    fightingStyle: "Kickboxing, BJJ"
+  },
+  {
+    id: 134,
+    name: "Geoff Neal",
+    country: "United States",
+    division: "Welterweight",
+    debutYear: 2018,
+    debutEvent: "UFC Fight Night 126",
+    record: "16-5-0",
+    fightingStyle: "Kickboxing"
+  },
+  {
+    id: 135,
+    name: "Vicente Luque",
+    country: "Brazil",
+    division: "Welterweight",
+    debutYear: 2015,
+    debutEvent: "The Ultimate Fighter 21 Finale",
+    record: "22-10-1",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 136,
+    name: "Volkan Oezdemir",
+    country: "Switzerland",
+    division: "Light Heavyweight",
+    debutYear: 2017,
+    debutEvent: "UFC Fight Night 104",
+    record: "18-7-0",
+    fightingStyle: "Kickboxing"
+  },
+  {
+    id: 137,
+    name: "Al Iaquinta",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2012,
+    debutEvent: "The Ultimate Fighter 15 Finale",
+    record: "14-7-1",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 138,
+    name: "Donald Cerrone",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2011,
+    debutEvent: "UFC 126",
+    record: "36-17-0",
+    fightingStyle: "Kickboxing, BJJ"
+  },
+  {
+    id: 139,
+    name: "Jim Miller",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2008,
+    debutEvent: "UFC 89",
+    record: "37-17-0",
+    fightingStyle: "Boxing, BJJ"
+  },
+  {
+    id: 140,
+    name: "Clay Guida",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2006,
+    debutEvent: "UFC 64",
+    record: "38-23-0",
+    fightingStyle: "Wrestling, Boxing"
+  },
+  {
+    id: 141,
+    name: "Paul Felder",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2014,
+    debutEvent: "UFC Fight Night 49",
+    record: "17-6-0",
+    fightingStyle: "Taekwondo, Kickboxing"
+  },
+  {
+    id: 142,
+    name: "Li Jingliang",
+    country: "China",
+    division: "Welterweight",
+    debutYear: 2014,
+    debutEvent: "UFC 173",
+    record: "20-9-0",
+    fightingStyle: "Sanda, Wrestling"
+  },
+  {
+    id: 143,
+    name: "Claudia Gadelha",
+    country: "Brazil",
+    division: "Women's Strawweight",
+    debutYear: 2014,
+    debutEvent: "UFC Fight Night 45",
+    record: "18-5-0",
+    fightingStyle: "BJJ, Muay Thai"
+  },
+  {
+    id: 144,
+    name: "André Fili",
+    country: "United States",
+    division: "Featherweight",
+    debutYear: 2013,
+    debutEvent: "UFC 166",
+    record: "22-10-0",
+    fightingStyle: "Boxing, Wrestling"
+  },
+  {
+    id: 145,
+    name: "Urijah Faber",
+    country: "United States",
+    division: "Bantamweight",
+    debutYear: 2011,
+    debutEvent: "UFC 128",
+    record: "35-11-0",
+    fightingStyle: "Wrestling, BJJ"
+  },
+  {
+    id: 146,
+    name: "Demian Maia",
+    country: "Brazil",
+    division: "Welterweight",
+    debutYear: 2007,
+    debutEvent: "UFC 77",
+    record: "28-11-0",
+    fightingStyle: "BJJ"
+  },
+  {
+    id: 147,
+    name: "Michel Pereira",
+    country: "Brazil",
+    division: "Welterweight",
+    debutYear: 2019,
+    debutEvent: "UFC Fight Night 152",
+    record: "28-11-0",
+    fightingStyle: "Capoeira, BJJ"
+  },
+  {
+    id: 148,
+    name: "Alexa Grasso",
+    country: "Mexico",
+    division: "Women's Flyweight",
+    debutYear: 2016,
+    debutEvent: "UFC Fight Night 98",
+    record: "16-3-1",
+    fightingStyle: "Boxing"
+  },
+  {
+    id: 149,
+    name: "Drew Dober",
+    country: "United States",
+    division: "Lightweight",
+    debutYear: 2013,
+    debutEvent: "UFC 166",
+    record: "27-12-0",
+    fightingStyle: "Muay Thai, BJJ"
+  },
+  {
+    id: 150,
+    name: "Maycee Barber",
+    country: "United States",
+    division: "Women's Flyweight",
+    debutYear: 2018,
+    debutEvent: "Dana White's Contender Series 13",
+    record: "14-2-0",
+    fightingStyle: "Karate, Kickboxing"
   }
 ];

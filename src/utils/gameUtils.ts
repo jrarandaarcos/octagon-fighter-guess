@@ -111,7 +111,7 @@ export const formatShareResult = (
     incorrect: "🟥",
   };
   
-  let shareText = `UFCdle ${generateDateSeed()} ${won ? attempts : "X"}/${maxAttempts}\n\n`;
+  let shareText = `GuessTheFighter ${generateDateSeed()} ${won ? attempts : "X"}/${maxAttempts}\n\n`;
   
   guessResults.forEach((result) => {
     const resultEmojis = Object.values(result).map((r) => emojis[r]).join("");

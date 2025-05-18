@@ -1,3 +1,4 @@
+
 import React from 'react';
 import GameHeader from '@/components/GameHeader';
 import GameBoard from '@/components/GameBoard';
@@ -21,6 +22,11 @@ const Index = () => {
     
     return `${diffHrs}h ${diffMins}m`;
   };
+
+  // Set document title
+  React.useEffect(() => {
+    document.title = "GuessTheFighter";
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
