@@ -5,7 +5,7 @@ import GameBoard from '@/components/GameBoard';
 import GameInput from '@/components/GameInput';
 import GameResult from '@/components/GameResult';
 import { Button } from '@/components/ui/button';
-import { Clock } from 'lucide-react';
+import { Clock, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
@@ -33,6 +33,15 @@ const Index = () => {
       <div className="flex flex-col min-h-screen">
         <GameHeader />
         
+        <div className="bg-muted/30 p-2 flex justify-center border-b border-gray-800">
+          <Link to="/nickname-game" className="w-full max-w-3xl">
+            <Button variant="outline" className="w-full flex items-center justify-center gap-2 hover:bg-muted">
+              <Target size={16} />
+              <span>Play the Nickname Game!</span>
+            </Button>
+          </Link>
+        </div>
+        
         <main className="flex-1 flex flex-col">
           <div className="max-w-3xl w-full mx-auto p-2 flex-1 flex flex-col">
             <GameBoard />
@@ -41,7 +50,7 @@ const Index = () => {
           </div>
         </main>
         
-        <footer className="border-t border-gray-200 dark:border-gray-800 py-4">
+        <footer className="border-t border-gray-800 py-4">
           <div className="max-w-3xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
             <div className="text-sm text-muted-foreground flex items-center">
               <Clock size={16} className="mr-2" />

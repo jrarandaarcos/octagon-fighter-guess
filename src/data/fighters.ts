@@ -1,6 +1,8 @@
+
 export interface Fighter {
   id: number;
   name: string;
+  nickname: string;
   country: string;
   division: string;
   debutYear: number;
@@ -14,6 +16,7 @@ export const fighters: Fighter[] = [
   {
     id: 1,
     name: "Jon Jones",
+    nickname: "Bones",
     country: "United States",
     division: "Heavyweight",
     debutYear: 2008,
@@ -24,6 +27,7 @@ export const fighters: Fighter[] = [
   {
     id: 2,
     name: "Islam Makhachev",
+    nickname: "The Dagestani Prodigy",
     country: "Russia",
     division: "Lightweight",
     debutYear: 2015,
@@ -34,6 +38,7 @@ export const fighters: Fighter[] = [
   {
     id: 3,
     name: "Alex Pereira",
+    nickname: "Poatan",
     country: "Brazil",
     division: "Light Heavyweight",
     debutYear: 2021,
@@ -44,6 +49,7 @@ export const fighters: Fighter[] = [
   {
     id: 4,
     name: "Leon Edwards",
+    nickname: "Rocky",
     country: "Jamaica",
     division: "Welterweight",
     debutYear: 2014,
@@ -54,6 +60,7 @@ export const fighters: Fighter[] = [
   {
     id: 5,
     name: "Dricus Du Plessis",
+    nickname: "Stillknocks",
     country: "South Africa",
     division: "Middleweight",
     debutYear: 2020,
@@ -64,6 +71,7 @@ export const fighters: Fighter[] = [
   {
     id: 6,
     name: "Alexandre Pantoja",
+    nickname: "The Cannibal",
     country: "Brazil",
     division: "Flyweight",
     debutYear: 2017,
@@ -74,6 +82,7 @@ export const fighters: Fighter[] = [
   {
     id: 7,
     name: "Ilia Topuria",
+    nickname: "El Matador",
     country: "Spain",
     division: "Featherweight",
     debutYear: 2020,
@@ -84,6 +93,7 @@ export const fighters: Fighter[] = [
   {
     id: 8,
     name: "Sean O'Malley",
+    nickname: "Suga",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2017,
@@ -94,6 +104,7 @@ export const fighters: Fighter[] = [
   {
     id: 9,
     name: "Alexa Grasso",
+    nickname: "La Reina",
     country: "Mexico",
     division: "Women's Flyweight",
     debutYear: 2016,
@@ -104,6 +115,7 @@ export const fighters: Fighter[] = [
   {
     id: 10,
     name: "Zhang Weili",
+    nickname: "Magnum",
     country: "China",
     division: "Women's Strawweight",
     debutYear: 2018,
@@ -114,6 +126,7 @@ export const fighters: Fighter[] = [
   {
     id: 11,
     name: "Julianna Peña",
+    nickname: "The Venezuelan Vixen",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2013,
@@ -124,6 +137,7 @@ export const fighters: Fighter[] = [
   {
     id: 12,
     name: "Khamzat Chimaev",
+    nickname: "Borz",
     country: "Sweden",
     division: "Middleweight",
     debutYear: 2020,
@@ -134,6 +148,7 @@ export const fighters: Fighter[] = [
   {
     id: 13,
     name: "Dustin Poirier",
+    nickname: "The Diamond",
     country: "United States",
     division: "Lightweight",
     debutYear: 2011,
@@ -144,6 +159,7 @@ export const fighters: Fighter[] = [
   {
     id: 14,
     name: "Max Holloway",
+    nickname: "Blessed",
     country: "United States",
     division: "Featherweight",
     debutYear: 2012,
@@ -154,6 +170,7 @@ export const fighters: Fighter[] = [
   {
     id: 15,
     name: "Charles Oliveira",
+    nickname: "Do Bronx",
     country: "Brazil",
     division: "Lightweight",
     debutYear: 2010,
@@ -164,6 +181,7 @@ export const fighters: Fighter[] = [
   {
     id: 16,
     name: "Israel Adesanya",
+    nickname: "The Last Stylebender",
     country: "Nigeria",
     division: "Middleweight",
     debutYear: 2018,
@@ -174,6 +192,7 @@ export const fighters: Fighter[] = [
   {
     id: 17,
     name: "Robert Whittaker",
+    nickname: "The Reaper",
     country: "New Zealand",
     division: "Middleweight",
     debutYear: 2012,
@@ -184,6 +203,7 @@ export const fighters: Fighter[] = [
   {
     id: 18,
     name: "Belal Muhammad",
+    nickname: "Remember the Name",
     country: "United States",
     division: "Welterweight",
     debutYear: 2016,
@@ -194,6 +214,7 @@ export const fighters: Fighter[] = [
   {
     id: 19,
     name: "Shavkat Rakhmonov",
+    nickname: "Nomad",
     country: "Kazakhstan",
     division: "Welterweight",
     debutYear: 2020,
@@ -204,6 +225,7 @@ export const fighters: Fighter[] = [
   {
     id: 20,
     name: "Colby Covington",
+    nickname: "Chaos",
     country: "United States",
     division: "Welterweight",
     debutYear: 2014,
@@ -214,6 +236,7 @@ export const fighters: Fighter[] = [
   {
     id: 21,
     name: "Francis Ngannou",
+    nickname: "The Predator",
     country: "Cameroon",
     division: "Heavyweight",
     debutYear: 2015,
@@ -224,6 +247,7 @@ export const fighters: Fighter[] = [
   {
     id: 22,
     name: "Brandon Moreno",
+    nickname: "The Assassin Baby",
     country: "Mexico",
     division: "Flyweight",
     debutYear: 2016,
@@ -234,6 +258,7 @@ export const fighters: Fighter[] = [
   {
     id: 23,
     name: "Kamaru Usman",
+    nickname: "The Nigerian Nightmare",
     country: "Nigeria",
     division: "Welterweight",
     debutYear: 2015,
@@ -244,6 +269,7 @@ export const fighters: Fighter[] = [
   {
     id: 24,
     name: "Valentina Shevchenko",
+    nickname: "Bullet",
     country: "Kyrgyzstan",
     division: "Women's Flyweight",
     debutYear: 2015,
@@ -254,6 +280,7 @@ export const fighters: Fighter[] = [
   {
     id: 25,
     name: "Amanda Nunes",
+    nickname: "The Lioness",
     country: "Brazil",
     division: "Women's Bantamweight",
     debutYear: 2013,
@@ -264,6 +291,7 @@ export const fighters: Fighter[] = [
   {
     id: 26,
     name: "Tom Aspinall",
+    nickname: "The Tackle",
     country: "United Kingdom",
     division: "Heavyweight",
     debutYear: 2020,
@@ -274,6 +302,7 @@ export const fighters: Fighter[] = [
   {
     id: 27,
     name: "Justin Gaethje",
+    nickname: "The Highlight",
     country: "United States",
     division: "Lightweight",
     debutYear: 2017,
@@ -284,6 +313,7 @@ export const fighters: Fighter[] = [
   {
     id: 28,
     name: "Deiveson Figueiredo",
+    nickname: "Deus da Guerra",
     country: "Brazil",
     division: "Bantamweight",
     debutYear: 2017,
@@ -294,6 +324,7 @@ export const fighters: Fighter[] = [
   {
     id: 29,
     name: "Paddy Pimblett",
+    nickname: "The Baddy",
     country: "United Kingdom",
     division: "Lightweight",
     debutYear: 2021,
@@ -304,6 +335,7 @@ export const fighters: Fighter[] = [
   {
     id: 30,
     name: "Rose Namajunas",
+    nickname: "Thug",
     country: "United States",
     division: "Women's Flyweight",
     debutYear: 2014,
@@ -314,6 +346,7 @@ export const fighters: Fighter[] = [
   {
     id: 31,
     name: "Gilbert Burns",
+    nickname: "Durinho",
     country: "Brazil",
     division: "Welterweight",
     debutYear: 2014,
@@ -324,6 +357,7 @@ export const fighters: Fighter[] = [
   {
     id: 32,
     name: "Petr Yan",
+    nickname: "No Mercy",
     country: "Russia",
     division: "Bantamweight",
     debutYear: 2018,
@@ -334,6 +368,7 @@ export const fighters: Fighter[] = [
   {
     id: 33,
     name: "Alexander Volkov",
+    nickname: "Drago",
     country: "Russia",
     division: "Heavyweight",
     debutYear: 2016,
@@ -344,6 +379,7 @@ export const fighters: Fighter[] = [
   {
     id: 34,
     name: "Jan Blachowicz",
+    nickname: "Prince of Cieszyn",
     country: "Poland",
     division: "Light Heavyweight",
     debutYear: 2014,
@@ -354,6 +390,7 @@ export const fighters: Fighter[] = [
   {
     id: 35,
     name: "Jiri Prochazka",
+    nickname: "Denisa",
     country: "Czech Republic",
     division: "Light Heavyweight",
     debutYear: 2020,
@@ -364,6 +401,7 @@ export const fighters: Fighter[] = [
   {
     id: 36,
     name: "Sean Strickland",
+    nickname: "Tarzan",
     country: "United States",
     division: "Middleweight",
     debutYear: 2014,
@@ -374,6 +412,7 @@ export const fighters: Fighter[] = [
   {
     id: 37,
     name: "Aljamain Sterling",
+    nickname: "Funk Master",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2014,
@@ -384,6 +423,7 @@ export const fighters: Fighter[] = [
   {
     id: 38,
     name: "Conor McGregor",
+    nickname: "The Notorious",
     country: "Ireland",
     division: "Lightweight",
     debutYear: 2013,
@@ -394,6 +434,7 @@ export const fighters: Fighter[] = [
   {
     id: 39,
     name: "Brian Ortega",
+    nickname: "T-City",
     country: "United States",
     division: "Featherweight",
     debutYear: 2014,
@@ -404,6 +445,7 @@ export const fighters: Fighter[] = [
   {
     id: 40,
     name: "Michael Chandler",
+    nickname: "Iron",
     country: "United States",
     division: "Lightweight",
     debutYear: 2021,
@@ -414,6 +456,7 @@ export const fighters: Fighter[] = [
   {
     id: 41,
     name: "Holly Holm",
+    nickname: "The Preacher's Daughter",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2015,
@@ -424,6 +467,7 @@ export const fighters: Fighter[] = [
   {
     id: 42,
     name: "Jessica Andrade",
+    nickname: "Bate Estaca",
     country: "Brazil",
     division: "Women's Flyweight",
     debutYear: 2013,
@@ -434,6 +478,7 @@ export const fighters: Fighter[] = [
   {
     id: 43,
     name: "Carla Esparza",
+    nickname: "Cookie Monster",
     country: "United States",
     division: "Women's Strawweight",
     debutYear: 2014,
@@ -444,6 +489,7 @@ export const fighters: Fighter[] = [
   {
     id: 44,
     name: "Marina Rodriguez",
+    nickname: "The Tiger",
     country: "Brazil",
     division: "Women's Strawweight",
     debutYear: 2018,
@@ -454,6 +500,7 @@ export const fighters: Fighter[] = [
   {
     id: 45,
     name: "Tatiana Suarez",
+    nickname: "The Khabib of Women's MMA",
     country: "United States",
     division: "Women's Strawweight",
     debutYear: 2016,
@@ -464,6 +511,7 @@ export const fighters: Fighter[] = [
   {
     id: 46,
     name: "Calvin Kattar",
+    nickname: "The Boston Finisher",
     country: "United States",
     division: "Featherweight",
     debutYear: 2017,
@@ -474,6 +522,7 @@ export const fighters: Fighter[] = [
   {
     id: 47,
     name: "Arnold Allen",
+    nickname: "Almighty",
     country: "United Kingdom",
     division: "Featherweight",
     debutYear: 2015,
@@ -484,6 +533,7 @@ export const fighters: Fighter[] = [
   {
     id: 48,
     name: "Movsar Evloev",
+    nickname: "The Machine",
     country: "Russia",
     division: "Featherweight",
     debutYear: 2019,
@@ -494,6 +544,7 @@ export const fighters: Fighter[] = [
   {
     id: 49,
     name: "Magomed Ankalaev",
+    nickname: "The Dagestani Sniper",
     country: "Russia",
     division: "Light Heavyweight",
     debutYear: 2018,
@@ -504,6 +555,7 @@ export const fighters: Fighter[] = [
   {
     id: 50,
     name: "Bo Nickal",
+    nickname: "The Future",
     country: "United States",
     division: "Middleweight",
     debutYear: 2023,
@@ -514,6 +566,7 @@ export const fighters: Fighter[] = [
   {
     id: 51,
     name: "Raul Rosas Jr.",
+    nickname: "El Niño Problema",
     country: "Mexico",
     division: "Bantamweight",
     debutYear: 2022,
@@ -524,6 +577,7 @@ export const fighters: Fighter[] = [
   {
     id: 52,
     name: "Joaquin Buckley",
+    nickname: "New Mansa",
     country: "United States",
     division: "Welterweight",
     debutYear: 2020,
@@ -534,6 +588,7 @@ export const fighters: Fighter[] = [
   {
     id: 53,
     name: "Jamahal Hill",
+    nickname: "Sweet Dreams",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2020,
@@ -544,6 +599,7 @@ export const fighters: Fighter[] = [
   {
     id: 54,
     name: "Derrick Lewis",
+    nickname: "The Black Beast",
     country: "United States",
     division: "Heavyweight",
     debutYear: 2014,
@@ -554,6 +610,7 @@ export const fighters: Fighter[] = [
   {
     id: 55,
     name: "Curtis Blaydes",
+    nickname: "Razor",
     country: "United States",
     division: "Heavyweight",
     debutYear: 2016,
@@ -564,6 +621,7 @@ export const fighters: Fighter[] = [
   {
     id: 56,
     name: "Sergei Pavlovich",
+    nickname: "The Polar Bear",
     country: "Russia",
     division: "Heavyweight",
     debutYear: 2018,
@@ -574,6 +632,7 @@ export const fighters: Fighter[] = [
   {
     id: 57,
     name: "Tai Tuivasa",
+    nickname: "Bam Bam",
     country: "Australia",
     division: "Heavyweight",
     debutYear: 2017,
@@ -584,6 +643,7 @@ export const fighters: Fighter[] = [
   {
     id: 58,
     name: "Ciryl Gane",
+    nickname: "Bon Gamin",
     country: "France",
     division: "Heavyweight",
     debutYear: 2019,
@@ -594,6 +654,7 @@ export const fighters: Fighter[] = [
   {
     id: 59,
     name: "Paulo Costa",
+    nickname: "Borrachinha",
     country: "Brazil",
     division: "Middleweight",
     debutYear: 2017,
@@ -604,6 +665,7 @@ export const fighters: Fighter[] = [
   {
     id: 60,
     name: "Dan Hooker",
+    nickname: "The Hangman",
     country: "New Zealand",
     division: "Lightweight",
     debutYear: 2014,
@@ -614,6 +676,7 @@ export const fighters: Fighter[] = [
   {
     id: 61,
     name: "Beneil Dariush",
+    nickname: "Benny",
     country: "Iran",
     division: "Lightweight",
     debutYear: 2014,
@@ -624,6 +687,7 @@ export const fighters: Fighter[] = [
   {
     id: 62,
     name: "Rafael Fiziev",
+    nickname: "Ataman",
     country: "Azerbaijan",
     division: "Lightweight",
     debutYear: 2019,
@@ -634,6 +698,7 @@ export const fighters: Fighter[] = [
   {
     id: 63,
     name: "Mateusz Gamrot",
+    nickname: "Gamer",
     country: "Poland",
     division: "Lightweight",
     debutYear: 2020,
@@ -644,6 +709,7 @@ export const fighters: Fighter[] = [
   {
     id: 64,
     name: "Arman Tsarukyan",
+    nickname: "Ahalkalakets",
     country: "Armenia",
     division: "Lightweight",
     debutYear: 2019,
@@ -654,6 +720,7 @@ export const fighters: Fighter[] = [
   {
     id: 65,
     name: "Merab Dvalishvili",
+    nickname: "The Machine",
     country: "Georgia",
     division: "Bantamweight",
     debutYear: 2017,
@@ -664,6 +731,7 @@ export const fighters: Fighter[] = [
   {
     id: 66,
     name: "Henry Cejudo",
+    nickname: "Triple C",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2014,
@@ -674,6 +742,7 @@ export const fighters: Fighter[] = [
   {
     id: 67,
     name: "Alexandre Pantoja",
+    nickname: "The Cannibal",
     country: "Brazil",
     division: "Flyweight",
     debutYear: 2017,
@@ -684,6 +753,7 @@ export const fighters: Fighter[] = [
   {
     id: 68,
     name: "Kai Kara-France",
+    nickname: "Don't Blink",
     country: "New Zealand",
     division: "Flyweight",
     debutYear: 2018,
@@ -694,6 +764,7 @@ export const fighters: Fighter[] = [
   {
     id: 69,
     name: "Manon Fiorot",
+    nickname: "The Beast",
     country: "France",
     division: "Women's Flyweight",
     debutYear: 2021,
@@ -704,6 +775,7 @@ export const fighters: Fighter[] = [
   {
     id: 70,
     name: "Yan Xiaonan",
+    nickname: "Fury",
     country: "China",
     division: "Women's Strawweight",
     debutYear: 2017,
@@ -714,6 +786,7 @@ export const fighters: Fighter[] = [
   {
     id: 71,
     name: "Taila Santos",
+    nickname: "The Brazilian Shadow",
     country: "Brazil",
     division: "Women's Flyweight",
     debutYear: 2019,
@@ -724,6 +797,7 @@ export const fighters: Fighter[] = [
   {
     id: 72,
     name: "Ketlen Vieira",
+    nickname: "Fenômeno",
     country: "Brazil",
     division: "Women's Bantamweight",
     debutYear: 2016,
@@ -734,6 +808,7 @@ export const fighters: Fighter[] = [
   {
     id: 73,
     name: "Kayla Harrison",
+    nickname: "The Killa",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2023,
@@ -744,6 +819,7 @@ export const fighters: Fighter[] = [
   {
     id: 74,
     name: "Alexander Volkanovski",
+    nickname: "The Great",
     country: "Australia",
     division: "Featherweight",
     debutYear: 2016,
@@ -754,6 +830,7 @@ export const fighters: Fighter[] = [
   {
     id: 75,
     name: "Dominick Cruz",
+    nickname: "The Dominator",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2011,
@@ -764,6 +841,7 @@ export const fighters: Fighter[] = [
   {
     id: 76,
     name: "Cory Sandhagen",
+    nickname: "The Sandman",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2018,
@@ -774,6 +852,7 @@ export const fighters: Fighter[] = [
   {
     id: 77,
     name: "Rob Font",
+    nickname: "The New England Cartel",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2014,
@@ -784,6 +863,7 @@ export const fighters: Fighter[] = [
   {
     id: 78,
     name: "Marlon Vera",
+    nickname: "Chito",
     country: "Ecuador",
     division: "Bantamweight",
     debutYear: 2014,
@@ -794,6 +874,7 @@ export const fighters: Fighter[] = [
   {
     id: 79,
     name: "Aleksandar Rakic",
+    nickname: "Rocket",
     country: "Austria",
     division: "Light Heavyweight",
     debutYear: 2017,
@@ -804,6 +885,7 @@ export const fighters: Fighter[] = [
   {
     id: 80,
     name: "Anthony Smith",
+    nickname: "Lionheart",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2013,
@@ -814,6 +896,7 @@ export const fighters: Fighter[] = [
   {
     id: 81,
     name: "Nikita Krylov",
+    nickname: "The Miner",
     country: "Ukraine",
     division: "Light Heavyweight",
     debutYear: 2013,
@@ -824,6 +907,7 @@ export const fighters: Fighter[] = [
   {
     id: 82,
     name: "Johnny Walker",
+    nickname: "The Wrecking Ball",
     country: "Brazil",
     division: "Light Heavyweight",
     debutYear: 2018,
@@ -834,6 +918,7 @@ export const fighters: Fighter[] = [
   {
     id: 83,
     name: "Stephen Thompson",
+    nickname: "Wonderboy",
     country: "United States",
     division: "Welterweight",
     debutYear: 2012,
@@ -844,6 +929,7 @@ export const fighters: Fighter[] = [
   {
     id: 84,
     name: "Neil Magny",
+    nickname: "The Haitian Sensation",
     country: "United States",
     division: "Welterweight",
     debutYear: 2013,
@@ -854,6 +940,7 @@ export const fighters: Fighter[] = [
   {
     id: 85,
     name: "Jack Della Maddalena",
+    nickname: "JDM",
     country: "Australia",
     division: "Welterweight",
     debutYear: 2022,
@@ -864,6 +951,7 @@ export const fighters: Fighter[] = [
   {
     id: 86,
     name: "Ian Machado Garry",
+    nickname: "The Future",
     country: "Ireland",
     division: "Welterweight",
     debutYear: 2021,
@@ -874,6 +962,7 @@ export const fighters: Fighter[] = [
   {
     id: 87,
     name: "Derek Brunson",
+    nickname: "The Law",
     country: "United States",
     division: "Middleweight",
     debutYear: 2012,
@@ -884,6 +973,7 @@ export const fighters: Fighter[] = [
   {
     id: 88,
     name: "Darren Till",
+    nickname: "The Gorilla",
     country: "United Kingdom",
     division: "Middleweight",
     debutYear: 2015,
@@ -894,6 +984,7 @@ export const fighters: Fighter[] = [
   {
     id: 89,
     name: "Kevin Holland",
+    nickname: "Trailblazer",
     country: "United States",
     division: "Welterweight",
     debutYear: 2018,
@@ -904,6 +995,7 @@ export const fighters: Fighter[] = [
   {
     id: 90,
     name: "Edmen Shahbazyan",
+    nickname: "The Golden Boy",
     country: "United States",
     division: "Middleweight",
     debutYear: 2018,
@@ -914,6 +1006,7 @@ export const fighters: Fighter[] = [
   {
     id: 91,
     name: "Uriah Hall",
+    nickname: "Prime Time",
     country: "Jamaica",
     division: "Middleweight",
     debutYear: 2013,
@@ -924,6 +1017,7 @@ export const fighters: Fighter[] = [
   {
     id: 92,
     name: "Corey Anderson",
+    nickname: "Overtime",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2014,
@@ -934,6 +1028,7 @@ export const fighters: Fighter[] = [
   {
     id: 93,
     name: "Chris Weidman",
+    nickname: "The All-American",
     country: "United States",
     division: "Middleweight",
     debutYear: 2011,
@@ -944,6 +1039,7 @@ export const fighters: Fighter[] = [
   {
     id: 94,
     name: "Irene Aldana",
+    nickname: "Robles",
     country: "Mexico",
     division: "Women's Bantamweight",
     debutYear: 2016,
@@ -954,6 +1050,7 @@ export const fighters: Fighter[] = [
   {
     id: 95,
     name: "Mackenzie Dern",
+    nickname: "Mack",
     country: "United States",
     division: "Women's Strawweight",
     debutYear: 2018,
@@ -964,6 +1061,7 @@ export const fighters: Fighter[] = [
   {
     id: 96,
     name: "Cub Swanson",
+    nickname: "Killer",
     country: "United States",
     division: "Featherweight",
     debutYear: 2011,
@@ -974,6 +1072,7 @@ export const fighters: Fighter[] = [
   {
     id: 97,
     name: "Jose Aldo",
+    nickname: "Junior",
     country: "Brazil",
     division: "Bantamweight",
     debutYear: 2011,
@@ -984,6 +1083,7 @@ export const fighters: Fighter[] = [
   {
     id: 98,
     name: "Edson Barboza",
+    nickname: "Junior",
     country: "Brazil",
     division: "Featherweight",
     debutYear: 2010,
@@ -994,6 +1094,7 @@ export const fighters: Fighter[] = [
   {
     id: 99,
     name: "Tony Ferguson",
+    nickname: "El Cucuy",
     country: "United States",
     division: "Lightweight",
     debutYear: 2011,
@@ -1004,6 +1105,7 @@ export const fighters: Fighter[] = [
   {
     id: 100,
     name: "Michael Chiesa",
+    nickname: "Maverick",
     country: "United States",
     division: "Welterweight",
     debutYear: 2012,
@@ -1014,6 +1116,7 @@ export const fighters: Fighter[] = [
   {
     id: 101,
     name: "Nate Diaz",
+    nickname: "The Stockton Slugger",
     country: "United States",
     division: "Welterweight",
     debutYear: 2007,
@@ -1024,6 +1127,7 @@ export const fighters: Fighter[] = [
   {
     id: 102,
     name: "Jorge Masvidal",
+    nickname: "Gamebred",
     country: "United States",
     division: "Welterweight",
     debutYear: 2013,
@@ -1034,6 +1138,7 @@ export const fighters: Fighter[] = [
   {
     id: 103,
     name: "Marlon Vera",
+    nickname: "Chito",
     country: "Ecuador",
     division: "Bantamweight",
     debutYear: 2014,
@@ -1044,6 +1149,7 @@ export const fighters: Fighter[] = [
   {
     id: 104,
     name: "Khabib Nurmagomedov",
+    nickname: "The Eagle",
     country: "Russia",
     division: "Lightweight",
     debutYear: 2012,
@@ -1054,6 +1160,7 @@ export const fighters: Fighter[] = [
   {
     id: 105,
     name: "Georges St-Pierre",
+    nickname: "GSP",
     country: "Canada",
     division: "Welterweight",
     debutYear: 2004,
@@ -1064,6 +1171,7 @@ export const fighters: Fighter[] = [
   {
     id: 106,
     name: "Miesha Tate",
+    nickname: "Cupcake",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2013,
@@ -1074,6 +1182,7 @@ export const fighters: Fighter[] = [
   {
     id: 107,
     name: "Angela Hill",
+    nickname: "Overkill",
     country: "United States",
     division: "Women's Strawweight",
     debutYear: 2014,
@@ -1084,6 +1193,7 @@ export const fighters: Fighter[] = [
   {
     id: 108,
     name: "Alexander Gustafsson",
+    nickname: "The Mauler",
     country: "Sweden",
     division: "Light Heavyweight",
     debutYear: 2009,
@@ -1094,6 +1204,7 @@ export const fighters: Fighter[] = [
   {
     id: 109,
     name: "Ronda Rousey",
+    nickname: "Rowdy",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2013,
@@ -1104,6 +1215,7 @@ export const fighters: Fighter[] = [
   {
     id: 110,
     name: "Cris Cyborg",
+    nickname: "Cyborg",
     country: "Brazil",
     division: "Women's Featherweight",
     debutYear: 2016,
@@ -1114,6 +1226,7 @@ export const fighters: Fighter[] = [
   {
     id: 111,
     name: "Yoel Romero",
+    nickname: "Soldier of God",
     country: "Cuba",
     division: "Middleweight",
     debutYear: 2013,
@@ -1124,6 +1237,7 @@ export const fighters: Fighter[] = [
   {
     id: 112,
     name: "Anderson Silva",
+    nickname: "The Spider",
     country: "Brazil",
     division: "Middleweight",
     debutYear: 2006,
@@ -1134,6 +1248,7 @@ export const fighters: Fighter[] = [
   {
     id: 113,
     name: "Demetrious Johnson",
+    nickname: "Mighty Mouse",
     country: "United States",
     division: "Flyweight",
     debutYear: 2011,
@@ -1144,6 +1259,7 @@ export const fighters: Fighter[] = [
   {
     id: 114,
     name: "Rashad Evans",
+    nickname: "Suga",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2005,
@@ -1154,6 +1270,7 @@ export const fighters: Fighter[] = [
   {
     id: 115,
     name: "Stipe Miocic",
+    nickname: "The Firefighter",
     country: "United States",
     division: "Heavyweight",
     debutYear: 2011,
@@ -1164,6 +1281,7 @@ export const fighters: Fighter[] = [
   {
     id: 116,
     name: "Daniel Cormier",
+    nickname: "DC",
     country: "United States",
     division: "Heavyweight",
     debutYear: 2013,
@@ -1174,6 +1292,7 @@ export const fighters: Fighter[] = [
   {
     id: 117,
     name: "Lyoto Machida",
+    nickname: "The Dragon",
     country: "Brazil",
     division: "Middleweight",
     debutYear: 2007,
@@ -1184,6 +1303,7 @@ export const fighters: Fighter[] = [
   {
     id: 118,
     name: "Frankie Edgar",
+    nickname: "The Answer",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2007,
@@ -1194,6 +1314,7 @@ export const fighters: Fighter[] = [
   {
     id: 119,
     name: "BJ Penn",
+    nickname: "The Prodigy",
     country: "United States",
     division: "Welterweight",
     debutYear: 2001,
@@ -1204,6 +1325,7 @@ export const fighters: Fighter[] = [
   {
     id: 120,
     name: "Joanna Jędrzejczyk",
+    nickname: "Joanna Champion",
     country: "Poland",
     division: "Women's Strawweight",
     debutYear: 2014,
@@ -1214,6 +1336,7 @@ export const fighters: Fighter[] = [
   {
     id: 121,
     name: "Paige VanZant",
+    nickname: "12 Gauge",
     country: "United States",
     division: "Women's Flyweight",
     debutYear: 2014,
@@ -1224,6 +1347,7 @@ export const fighters: Fighter[] = [
   {
     id: 122,
     name: "Marvin Vettori",
+    nickname: "The Italian Dream",
     country: "Italy",
     division: "Middleweight",
     debutYear: 2016,
@@ -1234,6 +1358,7 @@ export const fighters: Fighter[] = [
   {
     id: 123,
     name: "Molly McCann",
+    nickname: "Meatball",
     country: "United Kingdom",
     division: "Women's Flyweight",
     debutYear: 2018,
@@ -1244,6 +1369,7 @@ export const fighters: Fighter[] = [
   {
     id: 124,
     name: "Johnny Walker",
+    nickname: "The Wrecking Ball",
     country: "Brazil",
     division: "Light Heavyweight",
     debutYear: 2018,
@@ -1254,6 +1380,7 @@ export const fighters: Fighter[] = [
   {
     id: 125,
     name: "Carlos Condit",
+    nickname: "The Natural Born Killer",
     country: "United States",
     division: "Welterweight",
     debutYear: 2009,
@@ -1264,6 +1391,7 @@ export const fighters: Fighter[] = [
   {
     id: 126,
     name: "Cub Swanson",
+    nickname: "Killer",
     country: "United States",
     division: "Featherweight",
     debutYear: 2011,
@@ -1274,6 +1402,7 @@ export const fighters: Fighter[] = [
   {
     id: 127,
     name: "T.J. Dillashaw",
+    nickname: "Lieutenant Dan",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2011,
@@ -1284,6 +1413,7 @@ export const fighters: Fighter[] = [
   {
     id: 128,
     name: "Holly Holm",
+    nickname: "The Preacher's Daughter",
     country: "United States",
     division: "Women's Bantamweight",
     debutYear: 2015,
@@ -1294,6 +1424,7 @@ export const fighters: Fighter[] = [
   {
     id: 129,
     name: "Cody Garbrandt",
+    nickname: "No Love",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2015,
@@ -1304,6 +1435,7 @@ export const fighters: Fighter[] = [
   {
     id: 130,
     name: "Dan Hardy",
+    nickname: "The Outlaw",
     country: "United Kingdom",
     division: "Welterweight",
     debutYear: 2008,
@@ -1314,6 +1446,7 @@ export const fighters: Fighter[] = [
   {
     id: 131,
     name: "Darren Till",
+    nickname: "The Gorilla",
     country: "United Kingdom",
     division: "Middleweight",
     debutYear: 2015,
@@ -1324,6 +1457,7 @@ export const fighters: Fighter[] = [
   {
     id: 132,
     name: "Dominick Reyes",
+    nickname: "The Devastator",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2017,
@@ -1334,6 +1468,7 @@ export const fighters: Fighter[] = [
   {
     id: 133,
     name: "Anthony Smith",
+    nickname: "Lionheart",
     country: "United States",
     division: "Light Heavyweight",
     debutYear: 2013,
@@ -1344,6 +1479,7 @@ export const fighters: Fighter[] = [
   {
     id: 134,
     name: "Geoff Neal",
+    nickname: "Handz of Steel",
     country: "United States",
     division: "Welterweight",
     debutYear: 2018,
@@ -1354,6 +1490,7 @@ export const fighters: Fighter[] = [
   {
     id: 135,
     name: "Vicente Luque",
+    nickname: "The Silent Assassin",
     country: "Brazil",
     division: "Welterweight",
     debutYear: 2015,
@@ -1364,6 +1501,7 @@ export const fighters: Fighter[] = [
   {
     id: 136,
     name: "Volkan Oezdemir",
+    nickname: "No Time",
     country: "Switzerland",
     division: "Light Heavyweight",
     debutYear: 2017,
@@ -1374,6 +1512,7 @@ export const fighters: Fighter[] = [
   {
     id: 137,
     name: "Al Iaquinta",
+    nickname: "Raging",
     country: "United States",
     division: "Lightweight",
     debutYear: 2012,
@@ -1384,6 +1523,7 @@ export const fighters: Fighter[] = [
   {
     id: 138,
     name: "Donald Cerrone",
+    nickname: "Cowboy",
     country: "United States",
     division: "Lightweight",
     debutYear: 2011,
@@ -1394,6 +1534,7 @@ export const fighters: Fighter[] = [
   {
     id: 139,
     name: "Jim Miller",
+    nickname: "A-10",
     country: "United States",
     division: "Lightweight",
     debutYear: 2008,
@@ -1404,6 +1545,7 @@ export const fighters: Fighter[] = [
   {
     id: 140,
     name: "Clay Guida",
+    nickname: "The Carpenter",
     country: "United States",
     division: "Lightweight",
     debutYear: 2006,
@@ -1414,6 +1556,7 @@ export const fighters: Fighter[] = [
   {
     id: 141,
     name: "Paul Felder",
+    nickname: "The Irish Dragon",
     country: "United States",
     division: "Lightweight",
     debutYear: 2014,
@@ -1424,6 +1567,7 @@ export const fighters: Fighter[] = [
   {
     id: 142,
     name: "Li Jingliang",
+    nickname: "The Leech",
     country: "China",
     division: "Welterweight",
     debutYear: 2014,
@@ -1434,6 +1578,7 @@ export const fighters: Fighter[] = [
   {
     id: 143,
     name: "Claudia Gadelha",
+    nickname: "Claudinha",
     country: "Brazil",
     division: "Women's Strawweight",
     debutYear: 2014,
@@ -1444,6 +1589,7 @@ export const fighters: Fighter[] = [
   {
     id: 144,
     name: "André Fili",
+    nickname: "Touchy",
     country: "United States",
     division: "Featherweight",
     debutYear: 2013,
@@ -1454,6 +1600,7 @@ export const fighters: Fighter[] = [
   {
     id: 145,
     name: "Urijah Faber",
+    nickname: "The California Kid",
     country: "United States",
     division: "Bantamweight",
     debutYear: 2011,
@@ -1464,6 +1611,7 @@ export const fighters: Fighter[] = [
   {
     id: 146,
     name: "Demian Maia",
+    nickname: "The Jiu-Jitsu Master",
     country: "Brazil",
     division: "Welterweight",
     debutYear: 2007,
@@ -1474,6 +1622,7 @@ export const fighters: Fighter[] = [
   {
     id: 147,
     name: "Michel Pereira",
+    nickname: "Demolidor",
     country: "Brazil",
     division: "Welterweight",
     debutYear: 2019,
@@ -1484,6 +1633,7 @@ export const fighters: Fighter[] = [
   {
     id: 148,
     name: "Alexa Grasso",
+    nickname: "La Reina",
     country: "Mexico",
     division: "Women's Flyweight",
     debutYear: 2016,
@@ -1494,6 +1644,7 @@ export const fighters: Fighter[] = [
   {
     id: 149,
     name: "Drew Dober",
+    nickname: "The Doberman",
     country: "United States",
     division: "Lightweight",
     debutYear: 2013,
@@ -1504,6 +1655,7 @@ export const fighters: Fighter[] = [
   {
     id: 150,
     name: "Maycee Barber",
+    nickname: "The Future",
     country: "United States",
     division: "Women's Flyweight",
     debutYear: 2018,

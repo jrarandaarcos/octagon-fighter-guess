@@ -53,15 +53,15 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ open, onOpenChange }) => {
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
-                  <span>2015</span>
-                  <ArrowUp size={16} className="ml-1 text-black" />
+                  <span className="text-black font-medium mr-1">2015</span>
+                  <ArrowUp size={20} className="text-black font-bold stroke-[3]" />
                 </div>
                 <span>Your guess is too low - fighter debuted later</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
-                  <span>2015</span>
-                  <ArrowDown size={16} className="ml-1 text-black" />
+                  <span className="text-black font-medium mr-1">2015</span>
+                  <ArrowDown size={20} className="text-black font-bold stroke-[3]" />
                 </div>
                 <span>Your guess is too high - fighter debuted earlier</span>
               </div>
