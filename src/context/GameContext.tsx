@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Fighter, fighters } from '../data/fighters';
 import { 
@@ -37,8 +38,10 @@ interface GameStats {
 interface GameContextType {
   gameState: GameState;
   gameStats: GameStats;
-  makeGuess: (fighter: Fighter) => void;
+  makeGuess: (fighter: Fighter, gameType?: 'male' | 'female' | 'nickname') => void;
   resetGame: () => void;
+  setCurrentGameType: (type: 'male' | 'female' | 'nickname') => void;
+  currentGameType: 'male' | 'female' | 'nickname';
 }
 
 // Create the context
@@ -47,7 +50,10 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 // Provider component
 export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const { toast } = useToast();
-  const [gameState, setGameState] = useState<GameState>({
+  const [currentGameType, setCurrentGameType] = useState<'male' | 'female' | 'nickname'>('male');
+  
+  // Create separate game states for different game types
+  const [maleGameState, setMaleGameState] = useState<GameState>({
     dailyFighter: null,
     guesses: [],
     guessResults: [],
@@ -57,30 +63,101 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
     currentHint: null,
   });
   
-  const [gameStats, setGameStats] = useState<GameStats>({
-    gamesPlayed: 0,
-    gamesWon: 0,
-    currentStreak: 0,
-    maxStreak: 0,
-    lastPlayedDate: "",
-    guessDistribution: {
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
-      "5": 0,
-      "6": 0,
-    },
+  const [femaleGameState, setFemaleGameState] = useState<GameState>({
+    dailyFighter: null,
+    guesses: [],
+    guessResults: [],
+    isGameOver: false,
+    isWin: false,
+    maxAttempts: 6,
+    currentHint: null,
   });
+  
+  const [nicknameGameState, setNicknameGameState] = useState<GameState>({
+    dailyFighter: null,
+    guesses: [],
+    guessResults: [],
+    isGameOver: false,
+    isWin: false,
+    maxAttempts: 6,
+    currentHint: null,
+  });
+  
+  // Create separate game stats for different game types
+  const [maleGameStats, setMaleGameStats] = useState<GameStats>(getInitialGameStats());
+  const [femaleGameStats, setFemaleGameStats] = useState<GameStats>(getInitialGameStats());
+  const [nicknameGameStats, setNicknameGameStats] = useState<GameStats>(getInitialGameStats());
+  
+  // Helper function to get initial game stats
+  function getInitialGameStats(): GameStats {
+    return {
+      gamesPlayed: 0,
+      gamesWon: 0,
+      currentStreak: 0,
+      maxStreak: 0,
+      lastPlayedDate: "",
+      guessDistribution: {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+      },
+    };
+  }
+
+  // Get the current game state based on game type
+  const gameState = currentGameType === 'male' 
+    ? maleGameState 
+    : currentGameType === 'female' 
+      ? femaleGameState 
+      : nicknameGameState;
+  
+  // Get the current game stats based on game type
+  const gameStats = currentGameType === 'male'
+    ? maleGameStats
+    : currentGameType === 'female'
+      ? femaleGameStats
+      : nicknameGameStats;
+  
+  // Set the current game state based on game type
+  const setGameState = (newState: GameState) => {
+    if (currentGameType === 'male') {
+      setMaleGameState(newState);
+    } else if (currentGameType === 'female') {
+      setFemaleGameState(newState);
+    } else {
+      setNicknameGameState(newState);
+    }
+  };
+  
+  // Set the current game stats based on game type
+  const setGameStats = (newStats: GameStats) => {
+    if (currentGameType === 'male') {
+      setMaleGameStats(newStats);
+    } else if (currentGameType === 'female') {
+      setFemaleGameStats(newStats);
+    } else {
+      setNicknameGameStats(newStats);
+    }
+  };
 
   // Initialize or load the game
   useEffect(() => {
     initializeGame();
-  }, []);
+  }, [currentGameType]);
 
   const initializeGame = () => {
+    // Get the storage key suffix based on game type
+    const storageKeySuffix = currentGameType === 'male' 
+      ? '_male' 
+      : currentGameType === 'female' 
+        ? '_female' 
+        : '_nickname';
+    
     // Load saved stats
-    const savedStats = loadGameStats();
+    const savedStats = loadGameStats(storageKeySuffix);
     setGameStats(savedStats);
     
     const currentDate = generateDateSeed();
@@ -89,11 +166,20 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
     // Check if this is a new day
     if (isNewDay(lastPlayed)) {
       // It's a new day, start a fresh game
-      const daily = getDaily(fighters, currentDate);
+      let gameFighters = fighters;
+      
+      // Filter fighters based on game type
+      if (currentGameType === 'male') {
+        gameFighters = fighters.filter(fighter => !fighter.division.includes("Women's"));
+      } else if (currentGameType === 'female') {
+        gameFighters = fighters.filter(fighter => fighter.division.includes("Women's"));
+      }
+      
+      const daily = getDaily(gameFighters, currentDate + storageKeySuffix);
       
       // Make sure we have a valid daily fighter
       if (daily) {
-        console.log("New daily fighter loaded:", daily.name);
+        console.log(`New daily fighter loaded for ${currentGameType} game:`, daily.name);
         
         setGameState({
           dailyFighter: daily,
@@ -107,19 +193,20 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
         
         // Add previous day's fighter to past fighters if it exists
         if (lastPlayed) {
-          const previousGameState = loadGameState();
+          const previousGameState = loadGameState(storageKeySuffix);
           if (previousGameState && previousGameState.dailyFighter) {
             addToPastFighters(
               lastPlayed, 
               previousGameState.dailyFighter.name, 
-              previousGameState.isWin
+              previousGameState.isWin,
+              storageKeySuffix
             );
           }
         }
       } else {
-        console.error("Failed to load daily fighter");
+        console.error(`Failed to load daily fighter for ${currentGameType} game`);
         // Provide a fallback fighter
-        const fallbackFighter = fighters[0];
+        const fallbackFighter = gameFighters[0];
         setGameState({
           dailyFighter: fallbackFighter,
           guesses: [],
@@ -132,14 +219,24 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       }
     } else {
       // Same day, load saved state
-      const savedState = loadGameState();
+      const savedState = loadGameState(storageKeySuffix);
       if (savedState && savedState.dailyFighter) {
-        console.log("Loaded saved game state with fighter:", savedState.dailyFighter.name);
+        console.log(`Loaded saved game state for ${currentGameType} with fighter:`, savedState.dailyFighter.name);
         setGameState(savedState);
       } else {
         // Fallback if no saved state or invalid daily fighter
-        console.log("No valid saved state, getting new daily fighter");
-        const daily = getDaily(fighters, currentDate);
+        console.log(`No valid saved state for ${currentGameType}, getting new daily fighter`);
+        
+        let gameFighters = fighters;
+        
+        // Filter fighters based on game type
+        if (currentGameType === 'male') {
+          gameFighters = fighters.filter(fighter => !fighter.division.includes("Women's"));
+        } else if (currentGameType === 'female') {
+          gameFighters = fighters.filter(fighter => fighter.division.includes("Women's"));
+        }
+        
+        const daily = getDaily(gameFighters, currentDate + storageKeySuffix);
         
         // Double check we have a valid daily fighter
         if (daily) {
@@ -153,10 +250,10 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
             currentHint: null,
           });
         } else {
-          console.error("Failed to load daily fighter on fallback");
+          console.error(`Failed to load daily fighter on fallback for ${currentGameType} game`);
           // Use the first fighter as a last resort
           setGameState({
-            dailyFighter: fighters[0],
+            dailyFighter: gameFighters[0],
             guesses: [],
             guessResults: [],
             isGameOver: false,
@@ -170,8 +267,9 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
   };
 
   // Add fighter to past fighters list
-  const addToPastFighters = (date: string, name: string, wasGuessed: boolean) => {
-    const pastFightersJson = localStorage.getItem('ufcdle_past_fighters');
+  const addToPastFighters = (date: string, name: string, wasGuessed: boolean, storageKeySuffix: string = '') => {
+    const storageKey = `ufcdle_past_fighters${storageKeySuffix}`;
+    const pastFightersJson = localStorage.getItem(storageKey);
     let pastFighters = [];
     
     if (pastFightersJson) {
@@ -190,11 +288,17 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       pastFighters = pastFighters.slice(0, 30);
     }
     
-    localStorage.setItem('ufcdle_past_fighters', JSON.stringify(pastFighters));
+    localStorage.setItem(storageKey, JSON.stringify(pastFighters));
   };
 
   // Make a guess
-  const makeGuess = (fighter: Fighter) => {
+  const makeGuess = (fighter: Fighter, gameType?: 'male' | 'female' | 'nickname') => {
+    // Update current game type if provided
+    if (gameType && gameType !== currentGameType) {
+      setCurrentGameType(gameType);
+      return; // We'll initialize the new game type in the useEffect
+    }
+    
     if (gameState.isGameOver || !gameState.dailyFighter) return;
     
     // Compare the guessed fighter with the daily fighter
@@ -250,11 +354,19 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
     
     setGameState(newGameState);
     
+    // Get the storage key suffix based on game type
+    const storageKeySuffix = currentGameType === 'male' 
+      ? '_male' 
+      : currentGameType === 'female' 
+        ? '_female' 
+        : '_nickname';
+    
     // Save the game state
     saveGameState(
       gameState.dailyFighter,
       newGuesses,
-      newResults
+      newResults,
+      storageKeySuffix
     );
     
     // Update stats if game is over
@@ -267,6 +379,13 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
   const updateGameStats = (won: boolean, attempts: number) => {
     const currentDate = generateDateSeed();
     const newStats = { ...gameStats };
+    
+    // Get the storage key suffix based on game type
+    const storageKeySuffix = currentGameType === 'male' 
+      ? '_male' 
+      : currentGameType === 'female' 
+        ? '_female' 
+        : '_nickname';
     
     // Update basic stats
     newStats.gamesPlayed += 1;
@@ -294,7 +413,8 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       newStats.currentStreak,
       newStats.maxStreak,
       newStats.lastPlayedDate,
-      newStats.guessDistribution
+      newStats.guessDistribution,
+      storageKeySuffix
     );
     
     // Add to past fighters
@@ -302,15 +422,22 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       addToPastFighters(
         currentDate,
         gameState.dailyFighter.name,
-        won
+        won,
+        storageKeySuffix
       );
     }
   };
 
   // Reset game (for testing)
   const resetGame = () => {
-    localStorage.removeItem("ufcdle_state");
-    localStorage.removeItem("ufcdle_stats");
+    const storageKeySuffix = currentGameType === 'male' 
+      ? '_male' 
+      : currentGameType === 'female' 
+        ? '_female' 
+        : '_nickname';
+        
+    localStorage.removeItem(`ufcdle_state${storageKeySuffix}`);
+    localStorage.removeItem(`ufcdle_stats${storageKeySuffix}`);
     initializeGame();
   };
 
@@ -321,6 +448,8 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
         gameStats,
         makeGuess,
         resetGame,
+        setCurrentGameType,
+        currentGameType,
       }}
     >
       {children}

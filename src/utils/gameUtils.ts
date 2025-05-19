@@ -134,7 +134,8 @@ export const saveGameStats = (
   currentStreak: number,
   maxStreak: number,
   lastPlayedDate: string,
-  guessDistribution: {[key: string]: number}
+  guessDistribution: {[key: string]: number},
+  storageSuffix: string = ''
 ): void => {
   const stats = {
     gamesPlayed,
@@ -145,12 +146,12 @@ export const saveGameStats = (
     guessDistribution,
   };
   
-  localStorage.setItem("ufcdle_stats", JSON.stringify(stats));
+  localStorage.setItem(`ufcdle_stats${storageSuffix}`, JSON.stringify(stats));
 };
 
 // Load game stats from localStorage
-export const loadGameStats = () => {
-  const statsJson = localStorage.getItem("ufcdle_stats");
+export const loadGameStats = (storageSuffix: string = '') => {
+  const statsJson = localStorage.getItem(`ufcdle_stats${storageSuffix}`);
   
   if (!statsJson) {
     return {
@@ -177,7 +178,8 @@ export const loadGameStats = () => {
 export const saveGameState = (
   dailyFighter: Fighter,
   guesses: Fighter[],
-  guessResults: Array<{[key: string]: "correct" | "close" | "incorrect"}>
+  guessResults: Array<{[key: string]: "correct" | "close" | "incorrect"}>,
+  storageSuffix: string = ''
 ): void => {
   const gameState = {
     dailyFighter,
@@ -185,12 +187,12 @@ export const saveGameState = (
     guessResults,
   };
   
-  localStorage.setItem("ufcdle_state", JSON.stringify(gameState));
+  localStorage.setItem(`ufcdle_state${storageSuffix}`, JSON.stringify(gameState));
 };
 
 // Load current game state
-export const loadGameState = () => {
-  const stateJson = localStorage.getItem("ufcdle_state");
+export const loadGameState = (storageSuffix: string = '') => {
+  const stateJson = localStorage.getItem(`ufcdle_state${storageSuffix}`);
   
   if (!stateJson) {
     return null;

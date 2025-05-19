@@ -9,20 +9,26 @@ import Confetti from './Confetti';
 const GameResult: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [resultShown, setResultShown] = useState(false);
+  
   const { gameState } = useGameContext();
   const { isGameOver, isWin, dailyFighter } = gameState;
 
   // Show the result when the game is over
   useEffect(() => {
-    if (isGameOver && !open) {
+    if (isGameOver && !resultShown) {
       // Small delay to show the result
       const timer = setTimeout(() => {
         setOpen(true);
+        setResultShown(true); // Mark that we've shown the result
       }, 1000);
 
       return () => clearTimeout(timer);
+    } else if (!isGameOver) {
+      // Reset the resultShown flag when starting a new game
+      setResultShown(false);
     }
-  }, [isGameOver, open]);
+  }, [isGameOver, resultShown]);
 
   // Early return if dailyFighter is null
   if (!dailyFighter) {

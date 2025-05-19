@@ -7,8 +7,16 @@ import GameResult from '@/components/GameResult';
 import { Button } from '@/components/ui/button';
 import { Clock, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useGameContext } from '../context/GameContext';
 
 const FemaleFightersGame = () => {
+  const { setCurrentGameType } = useGameContext();
+  
+  // Set correct game type when component mounts
+  React.useEffect(() => {
+    setCurrentGameType('female');
+  }, [setCurrentGameType]);
+  
   // Calculate time until next fighter
   const getTimeUntilTomorrow = () => {
     const now = new Date();

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Fighter, fighters } from '../data/fighters';
 import { useGameContext } from '../context/GameContext';
@@ -6,13 +7,20 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
 interface GameInputProps {
-  gameType?: 'male' | 'female';
+  gameType?: 'male' | 'female' | 'nickname';
 }
 
-const GameInput: React.FC<GameInputProps> = ({ gameType }) => {
+const GameInput: React.FC<GameInputProps> = ({ gameType = 'male' }) => {
   const { toast } = useToast();
-  const { gameState, makeGuess } = useGameContext();
+  const { gameState, makeGuess, currentGameType, setCurrentGameType } = useGameContext();
   const { isGameOver, guesses, currentHint } = gameState;
+  
+  // Set the current game type
+  React.useEffect(() => {
+    if (gameType !== currentGameType) {
+      setCurrentGameType(gameType);
+    }
+  }, [gameType, currentGameType, setCurrentGameType]);
   
   // Filter fighters by gender if specified
   let availableFighters = fighters;
