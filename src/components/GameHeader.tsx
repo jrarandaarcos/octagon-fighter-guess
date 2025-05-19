@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Help, Trophy, Menu } from 'lucide-react';
+import { HelpCircle, Trophy, Menu } from 'lucide-react';
 import HelpDialog from './HelpDialog';
 import StatsDialog from './StatsDialog';
 import PastFightersDialog from './PastFightersDialog';
@@ -31,7 +31,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({ subtitle }) => {
           
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
-              <Help className="w-4 h-4 mr-2" />
+              <HelpCircle className="w-4 h-4 mr-2" />
               <span>Help</span>
             </Button>
             
