@@ -5,14 +5,31 @@ import SearchInput from './SearchInput';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
-const GameInput: React.FC = () => {
+interface GameInputProps {
+  gameType?: 'male' | 'female';
+}
+
+const GameInput: React.FC<GameInputProps> = ({ gameType }) => {
   const { toast } = useToast();
   const { gameState, makeGuess } = useGameContext();
   const { isGameOver, guesses, currentHint } = gameState;
   
+  // Filter fighters by gender if specified
+  let availableFighters = fighters;
+  
+  if (gameType === 'male') {
+    availableFighters = fighters.filter(fighter => 
+      !fighter.division.includes("Women's")
+    );
+  } else if (gameType === 'female') {
+    availableFighters = fighters.filter(fighter => 
+      fighter.division.includes("Women's")
+    );
+  }
+  
   // Keep track of which fighters have already been guessed
   const guessedFighterIds = guesses.map(fighter => fighter.id);
-  const availableFighters = fighters.filter(fighter => !guessedFighterIds.includes(fighter.id));
+  availableFighters = availableFighters.filter(fighter => !guessedFighterIds.includes(fighter.id));
 
   const handleSelectFighter = (fighter: Fighter) => {
     makeGuess(fighter);

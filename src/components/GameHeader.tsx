@@ -1,73 +1,51 @@
 
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { HelpCircle, BarChart2, Share2 } from "lucide-react";
-import { useGameContext } from "../context/GameContext";
-import StatsDialog from "./StatsDialog";
-import HelpDialog from "./HelpDialog";
-import ShareDialog from "./ShareDialog";
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Help, Trophy, Menu } from 'lucide-react';
+import HelpDialog from './HelpDialog';
+import StatsDialog from './StatsDialog';
+import PastFightersDialog from './PastFightersDialog';
 
-const GameHeader: React.FC = () => {
-  const { gameState } = useGameContext();
-  const [showStats, setShowStats] = React.useState(false);
-  const [showHelp, setShowHelp] = React.useState(false);
-  const [showShare, setShowShare] = React.useState(false);
+interface GameHeaderProps {
+  subtitle?: string;
+}
 
-  // Check if this is the first time playing and show help
-  React.useEffect(() => {
-    const firstTime = localStorage.getItem("ufcdle_first_time");
-    if (!firstTime) {
-      setShowHelp(true);
-      localStorage.setItem("ufcdle_first_time", "false");
-    }
-  }, []);
+const GameHeader: React.FC<GameHeaderProps> = ({ subtitle }) => {
+  const [helpOpen, setHelpOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
+  const [pastOpen, setPastOpen] = useState(false);
 
   return (
-    <header className="flex flex-col items-center justify-center w-full px-4 py-3 border-b border-gray-200 dark:border-gray-800">
-      <div className="w-full flex items-center justify-between">
-        <div className="flex-1"></div>
-        <div className="flex items-center gap-2 justify-center">
-          <div className="octagon bg-ufc-red h-8 w-8 p-1 flex items-center justify-center">
-            <span className="text-white font-bold text-xs">UFC</span>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight">GuessTheFighter</h1>
-        </div>
-        
-        <div className="flex-1 flex items-center justify-end gap-2">
-          <Button 
-            size="icon" 
-            variant="ghost"
-            onClick={() => setShowHelp(true)}
-            title="How to play"
-          >
-            <HelpCircle size={20} />
+    <header className="border-b border-gray-800 py-4">
+      <div className="max-w-3xl mx-auto px-4 flex flex-col items-center">
+        <h1 className="text-2xl md:text-3xl font-bold text-center">
+          GuessTheFighter
+        </h1>
+        {subtitle && (
+          <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>
+        )}
+        <div className="w-full flex justify-between items-center mt-4">
+          <Button variant="ghost" size="icon" onClick={() => setPastOpen(true)}>
+            <Menu className="w-5 h-5" />
           </Button>
           
-          <Button 
-            size="icon" 
-            variant="ghost"
-            onClick={() => setShowStats(true)} 
-            title="Statistics"
-          >
-            <BarChart2 size={20} />
-          </Button>
-          
-          {gameState.isGameOver && gameState.dailyFighter && (
-            <Button 
-              size="icon" 
-              variant="ghost"
-              onClick={() => setShowShare(true)}
-              title="Share"
-            >
-              <Share2 size={20} />
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => setHelpOpen(true)}>
+              <Help className="w-4 h-4 mr-2" />
+              <span>Help</span>
             </Button>
-          )}
+            
+            <Button variant="outline" size="sm" onClick={() => setStatsOpen(true)}>
+              <Trophy className="w-4 h-4 mr-2" />
+              <span>Stats</span>
+            </Button>
+          </div>
         </div>
       </div>
       
-      <StatsDialog open={showStats} onOpenChange={setShowStats} />
-      <HelpDialog open={showHelp} onOpenChange={setShowHelp} />
-      <ShareDialog open={showShare} onOpenChange={setShowShare} />
+      <HelpDialog open={helpOpen} onOpenChange={setHelpOpen} />
+      <StatsDialog open={statsOpen} onOpenChange={setStatsOpen} />
+      <PastFightersDialog open={pastOpen} onOpenChange={setPastOpen} />
     </header>
   );
 };

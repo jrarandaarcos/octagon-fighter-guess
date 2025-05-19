@@ -7,9 +7,10 @@ import { ArrowDown, ArrowUp } from 'lucide-react';
 interface GuessRowProps {
   fighter?: Fighter;
   result?: {[key: string]: "correct" | "close" | "incorrect"};
+  targetYear?: number;
 }
 
-const GuessRow: React.FC<GuessRowProps> = ({ fighter, result }) => {
+const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
   // If no fighter, render empty row
   if (!fighter || !result) {
     return (
@@ -24,7 +25,7 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result }) => {
     );
   }
 
-  // Map of attributes to display (removed record and fightingStyle)
+  // Map of attributes to show
   const attributesToShow = [
     { key: 'name', label: 'Name', value: fighter.name },
     { key: 'country', label: 'Country', value: fighter.country },
@@ -44,7 +45,7 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result }) => {
         };
         
         // Add arrow indicator for debut year when it's "close"
-        const showYearIndicator = key === 'debutYear' && cellResult === 'close';
+        const showYearIndicator = key === 'debutYear' && cellResult === 'close' && targetYear !== undefined;
         
         return (
           <div
@@ -56,12 +57,15 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result }) => {
             title={String(value)}
           >
             <div className="flex items-center justify-center gap-1">
-              <span className="px-1">{value}</span>
+              <span className={showYearIndicator ? "mr-1" : "px-1"}>{value}</span>
               {showYearIndicator && (
-                <span className="text-black dark:text-white">
-                  {/* We would need the target fighter's year to determine if higher/lower */}
-                  {/* For now this is just a visual, game logic would determine which arrow */}
-                </span>
+                <>
+                  {Number(value) < targetYear ? (
+                    <ArrowUp className="text-black stroke-[3] w-5 h-5" />
+                  ) : (
+                    <ArrowDown className="text-black stroke-[3] w-5 h-5" />
+                  )}
+                </>
               )}
             </div>
           </div>

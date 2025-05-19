@@ -32,6 +32,7 @@ const GameBoard: React.FC = () => {
             key={`guess-${index}`}
             fighter={guess}
             result={guessResults[index]}
+            targetYear={dailyFighter?.debutYear}
           />
         ))}
         
