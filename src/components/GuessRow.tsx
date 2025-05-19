@@ -44,8 +44,8 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
           'incorrect': 'cell-incorrect',
         };
         
-        // Add arrow indicator for debut year when it's "close"
-        const showYearIndicator = key === 'debutYear' && cellResult === 'close' && targetYear !== undefined;
+        // Show year indicator for debut year when it's not correct and target year is available
+        const showYearIndicator = key === 'debutYear' && cellResult !== 'correct' && targetYear !== undefined;
         
         return (
           <div

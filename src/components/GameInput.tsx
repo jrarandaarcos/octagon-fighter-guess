@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Fighter, fighters } from '../data/fighters';
 import { useGameContext } from '../context/GameContext';
@@ -55,11 +54,7 @@ const GameInput: React.FC<GameInputProps> = ({ gameType = 'male' }) => {
   return (
     <div className="w-full max-w-3xl mx-auto p-4 space-y-4">
       {isGameOver ? (
-        <div className="text-center space-y-4">
-          <Button onClick={handleNewGame} className="bg-ufc-red hover:bg-red-600">
-            Next Fighter Tomorrow
-          </Button>
-        </div>
+        <div></div> // Empty div instead of button - the next game buttons are in GameResult now
       ) : (
         <>
           <SearchInput 

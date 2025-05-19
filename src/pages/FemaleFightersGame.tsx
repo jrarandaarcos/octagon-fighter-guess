@@ -5,7 +5,7 @@ import GameBoard from '@/components/GameBoard';
 import GameInput from '@/components/GameInput';
 import GameResult from '@/components/GameResult';
 import { Button } from '@/components/ui/button';
-import { Clock, Target } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useGameContext } from '../context/GameContext';
 
@@ -41,20 +41,7 @@ const FemaleFightersGame = () => {
       <div className="flex flex-col min-h-screen">
         <GameHeader subtitle="Women Fighters Edition" />
         
-        <div className="bg-muted/30 p-2 flex justify-center gap-2 border-b border-gray-800">
-          <Link to="/" className="flex-1">
-            <Button variant="outline" className="w-full flex items-center justify-center gap-2 hover:bg-muted">
-              <Target size={16} />
-              <span>Play Men's Edition</span>
-            </Button>
-          </Link>
-          <Link to="/nickname-game" className="flex-1">
-            <Button variant="outline" className="w-full flex items-center justify-center gap-2 hover:bg-muted">
-              <Target size={16} />
-              <span>Play Nickname Game</span>
-            </Button>
-          </Link>
-        </div>
+        {/* Navigation removed - will be shown via GameResult instead */}
         
         <main className="flex-1 flex flex-col">
           <div className="max-w-3xl w-full mx-auto p-2 flex-1 flex flex-col">

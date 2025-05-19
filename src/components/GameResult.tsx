@@ -1,17 +1,19 @@
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../context/GameContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Share2 } from 'lucide-react';
+import { Share2, ArrowRight } from 'lucide-react';
 import Confetti from './Confetti';
 
 const GameResult: React.FC = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [resultShown, setResultShown] = useState(false);
   
-  const { gameState } = useGameContext();
+  const { gameState, currentGameType } = useGameContext();
   const { isGameOver, isWin, dailyFighter } = gameState;
 
   // Show the result when the game is over
@@ -30,10 +32,34 @@ const GameResult: React.FC = () => {
     }
   }, [isGameOver, resultShown]);
 
+  const handleNextGame = () => {
+    setOpen(false);
+    // If current game is male, go to female game
+    if (currentGameType === 'male') {
+      navigate('/female-fighters');
+    } 
+    // If current game is female, go to nickname game
+    else if (currentGameType === 'female') {
+      navigate('/nickname-game');
+    }
+  };
+
   // Early return if dailyFighter is null
   if (!dailyFighter) {
     return null; // Don't render anything if dailyFighter is null
   }
+
+  // Get the text for the next game button based on current game type
+  const getNextGameText = () => {
+    if (currentGameType === 'male') {
+      return "Play Women's Edition";
+    } else if (currentGameType === 'female') {
+      return "Play Nickname Game";
+    }
+    return null;
+  };
+
+  const nextGameText = getNextGameText();
 
   return (
     <>
@@ -67,7 +93,7 @@ const GameResult: React.FC = () => {
               <div><span className="font-medium">Event:</span> {dailyFighter.debutEvent}</div>
             </div>
             
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center gap-3 pt-2">
               <Button 
                 onClick={() => setShowShare(true)}
                 className="bg-ufc-red hover:bg-red-600 text-white"
@@ -75,6 +101,16 @@ const GameResult: React.FC = () => {
                 <Share2 size={16} className="mr-2" /> 
                 Share Result
               </Button>
+
+              {/* Only show next game button if there is one */}
+              {nextGameText && (
+                <Button 
+                  onClick={handleNextGame}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  {nextGameText} <ArrowRight size={16} className="ml-2" />
+                </Button>
+              )}
             </div>
           </div>
         </DialogContent>
