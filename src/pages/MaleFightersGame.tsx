@@ -5,12 +5,20 @@ import GameBoard from '@/components/GameBoard';
 import GameInput from '@/components/GameInput';
 import GameResult from '@/components/GameResult';
 import { Button } from '@/components/ui/button';
-import { Clock } from 'lucide-react';
+import { BarChart2, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useGameContext } from '../context/GameContext';
+import CombinedStatsDialog from '@/components/CombinedStatsDialog';
 
 const MaleFightersGame = () => {
-  const { setCurrentGameType } = useGameContext();
+  const { setCurrentGameType, gameCompletionStatus } = useGameContext();
+  const [combinedStatsOpen, setCombinedStatsOpen] = React.useState(false);
+  
+  // Check if at least two games are completed
+  const atLeastTwoGamesCompleted = 
+    (gameCompletionStatus.male && gameCompletionStatus.female) ||
+    (gameCompletionStatus.male && gameCompletionStatus.nickname) ||
+    (gameCompletionStatus.female && gameCompletionStatus.nickname);
   
   // Set correct game type when component mounts
   React.useEffect(() => {
@@ -41,8 +49,6 @@ const MaleFightersGame = () => {
       <div className="flex flex-col min-h-screen">
         <GameHeader subtitle="Male Fighters Edition" />
         
-        {/* Navigation removed - will be shown via GameResult instead */}
-        
         <main className="flex-1 flex flex-col">
           <div className="max-w-3xl w-full mx-auto p-2 flex-1 flex flex-col">
             <GameBoard />
@@ -59,6 +65,11 @@ const MaleFightersGame = () => {
             </div>
             
             <div className="flex items-center space-x-4">
+              {atLeastTwoGamesCompleted && (
+                <Button variant="ghost" size="sm" onClick={() => setCombinedStatsOpen(true)}>
+                  <BarChart2 size={16} className="mr-2" /> Combined Stats
+                </Button>
+              )}
               <Button variant="ghost" size="sm" asChild>
                 <Link to="/past-fighters">Past Fighters</Link>
               </Button>
@@ -66,6 +77,11 @@ const MaleFightersGame = () => {
           </div>
         </footer>
       </div>
+      
+      <CombinedStatsDialog
+        open={combinedStatsOpen}
+        onOpenChange={setCombinedStatsOpen}
+      />
     </div>
   );
 };

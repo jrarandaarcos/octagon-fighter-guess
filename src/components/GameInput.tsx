@@ -1,9 +1,12 @@
+
 import React from 'react';
 import { Fighter, fighters } from '../data/fighters';
 import { useGameContext } from '../context/GameContext';
 import SearchInput from './SearchInput';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { BarChart2 } from 'lucide-react';
+import CombinedStatsDialog from './CombinedStatsDialog';
 
 interface GameInputProps {
   gameType?: 'male' | 'female' | 'nickname';
@@ -11,8 +14,15 @@ interface GameInputProps {
 
 const GameInput: React.FC<GameInputProps> = ({ gameType = 'male' }) => {
   const { toast } = useToast();
-  const { gameState, makeGuess, currentGameType, setCurrentGameType } = useGameContext();
+  const { gameState, makeGuess, currentGameType, setCurrentGameType, gameCompletionStatus } = useGameContext();
   const { isGameOver, guesses, currentHint } = gameState;
+  const [combinedStatsOpen, setCombinedStatsOpen] = React.useState(false);
+  
+  // Check if at least two games are completed
+  const atLeastTwoGamesCompleted = 
+    (gameCompletionStatus.male && gameCompletionStatus.female) ||
+    (gameCompletionStatus.male && gameCompletionStatus.nickname) ||
+    (gameCompletionStatus.female && gameCompletionStatus.nickname);
   
   // Set the current game type
   React.useEffect(() => {
@@ -54,7 +64,17 @@ const GameInput: React.FC<GameInputProps> = ({ gameType = 'male' }) => {
   return (
     <div className="w-full max-w-3xl mx-auto p-4 space-y-4">
       {isGameOver ? (
-        <div></div> // Empty div instead of button - the next game buttons are in GameResult now
+        <div className="flex justify-center">
+          {atLeastTwoGamesCompleted && (
+            <Button 
+              variant="outline" 
+              onClick={() => setCombinedStatsOpen(true)}
+              className="mt-4"
+            >
+              <BarChart2 size={16} className="mr-2" /> View Combined Stats
+            </Button>
+          )}
+        </div>
       ) : (
         <>
           <SearchInput 
@@ -69,6 +89,11 @@ const GameInput: React.FC<GameInputProps> = ({ gameType = 'male' }) => {
           )}
         </>
       )}
+      
+      <CombinedStatsDialog
+        open={combinedStatsOpen}
+        onOpenChange={setCombinedStatsOpen}
+      />
     </div>
   );
 };

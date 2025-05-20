@@ -34,6 +34,14 @@ interface GameStats {
   guessDistribution: {[key: string]: number};
 }
 
+// Define game completion status
+interface GameCompletionStatus {
+  male: boolean;
+  female: boolean;
+  nickname: boolean;
+  lastUpdated: string;
+}
+
 // Define the context interface
 interface GameContextType {
   gameState: GameState;
@@ -42,6 +50,12 @@ interface GameContextType {
   resetGame: () => void;
   setCurrentGameType: (type: 'male' | 'female' | 'nickname') => void;
   currentGameType: 'male' | 'female' | 'nickname';
+  gameCompletionStatus: GameCompletionStatus;
+  getAllGameStats: () => {
+    male: GameStats;
+    female: GameStats;
+    nickname: GameStats;
+  };
 }
 
 // Create the context
@@ -88,6 +102,14 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
   const [femaleGameStats, setFemaleGameStats] = useState<GameStats>(getInitialGameStats());
   const [nicknameGameStats, setNicknameGameStats] = useState<GameStats>(getInitialGameStats());
   
+  // Track game completion status
+  const [gameCompletionStatus, setGameCompletionStatus] = useState<GameCompletionStatus>({
+    male: false,
+    female: false,
+    nickname: false,
+    lastUpdated: "",
+  });
+
   // Helper function to get initial game stats
   function getInitialGameStats(): GameStats {
     return {
@@ -142,6 +164,48 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       setNicknameGameStats(newStats);
     }
   };
+  
+  // Get all game stats regardless of current game type
+  const getAllGameStats = () => {
+    return {
+      male: maleGameStats,
+      female: femaleGameStats,
+      nickname: nicknameGameStats
+    };
+  };
+
+  // Load game completion status
+  useEffect(() => {
+    const currentDate = generateDateSeed();
+    const savedCompletionStatus = localStorage.getItem('ufcdle_game_completion');
+    
+    if (savedCompletionStatus) {
+      const parsed = JSON.parse(savedCompletionStatus);
+      
+      // If it's a new day, reset completion status
+      if (parsed.lastUpdated !== currentDate) {
+        const resetStatus = {
+          male: false,
+          female: false,
+          nickname: false,
+          lastUpdated: currentDate
+        };
+        setGameCompletionStatus(resetStatus);
+        localStorage.setItem('ufcdle_game_completion', JSON.stringify(resetStatus));
+      } else {
+        setGameCompletionStatus(parsed);
+      }
+    } else {
+      const initialStatus = {
+        male: false,
+        female: false,
+        nickname: false,
+        lastUpdated: currentDate
+      };
+      setGameCompletionStatus(initialStatus);
+      localStorage.setItem('ufcdle_game_completion', JSON.stringify(initialStatus));
+    }
+  }, []);
 
   // Initialize or load the game
   useEffect(() => {
@@ -417,6 +481,20 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
       storageKeySuffix
     );
     
+    // Update game completion status
+    const newCompletionStatus = {...gameCompletionStatus};
+    if (currentGameType === 'male') {
+      newCompletionStatus.male = true;
+    } else if (currentGameType === 'female') {
+      newCompletionStatus.female = true;
+    } else if (currentGameType === 'nickname') {
+      newCompletionStatus.nickname = true;
+    }
+    
+    newCompletionStatus.lastUpdated = currentDate;
+    setGameCompletionStatus(newCompletionStatus);
+    localStorage.setItem('ufcdle_game_completion', JSON.stringify(newCompletionStatus));
+    
     // Add to past fighters
     if (gameState.dailyFighter) {
       addToPastFighters(
@@ -450,6 +528,8 @@ export const GameProvider: React.FC<{children: React.ReactNode}> = ({ children }
         resetGame,
         setCurrentGameType,
         currentGameType,
+        gameCompletionStatus,
+        getAllGameStats,
       }}
     >
       {children}

@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useGameContext } from '../context/GameContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Share2, ArrowRight } from 'lucide-react';
+import { Share2, ArrowRight, BarChart2 } from 'lucide-react';
 import Confetti from './Confetti';
+import ShareDialog from './ShareDialog';
+import CombinedStatsDialog from './CombinedStatsDialog';
 
 const GameResult: React.FC = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [showShare, setShowShare] = useState(false);
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const [combinedStatsOpen, setCombinedStatsOpen] = useState(false);
   const [resultShown, setResultShown] = useState(false);
   
-  const { gameState, currentGameType } = useGameContext();
+  const { gameState, currentGameType, gameCompletionStatus } = useGameContext();
   const { isGameOver, isWin, dailyFighter } = gameState;
 
   // Show the result when the game is over
@@ -43,6 +46,12 @@ const GameResult: React.FC = () => {
       navigate('/nickname-game');
     }
   };
+
+  // Check if at least two games are completed
+  const atLeastTwoGamesCompleted = 
+    (gameCompletionStatus.male && gameCompletionStatus.female) ||
+    (gameCompletionStatus.male && gameCompletionStatus.nickname) ||
+    (gameCompletionStatus.female && gameCompletionStatus.nickname);
 
   // Early return if dailyFighter is null
   if (!dailyFighter) {
@@ -93,9 +102,9 @@ const GameResult: React.FC = () => {
               <div><span className="font-medium">Event:</span> {dailyFighter.debutEvent}</div>
             </div>
             
-            <div className="flex justify-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row justify-center gap-2 pt-2">
               <Button 
-                onClick={() => setShowShare(true)}
+                onClick={() => setShareDialogOpen(true)}
                 className="bg-ufc-red hover:bg-red-600 text-white"
               >
                 <Share2 size={16} className="mr-2" /> 
@@ -111,10 +120,30 @@ const GameResult: React.FC = () => {
                   {nextGameText} <ArrowRight size={16} className="ml-2" />
                 </Button>
               )}
+              
+              {/* Show combined stats button if at least two games are completed */}
+              {atLeastTwoGamesCompleted && (
+                <Button 
+                  onClick={() => setCombinedStatsOpen(true)}
+                  variant="outline"
+                >
+                  <BarChart2 size={16} className="mr-2" /> Combined Stats
+                </Button>
+              )}
             </div>
           </div>
         </DialogContent>
       </Dialog>
+      
+      <ShareDialog 
+        open={shareDialogOpen} 
+        onOpenChange={setShareDialogOpen} 
+      />
+      
+      <CombinedStatsDialog
+        open={combinedStatsOpen}
+        onOpenChange={setCombinedStatsOpen}
+      />
     </>
   );
 };

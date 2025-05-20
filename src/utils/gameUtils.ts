@@ -1,5 +1,6 @@
 
 import { Fighter } from "../data/fighters";
+import { GameStats } from "../types/game";
 
 // Generate a seed based on date for consistent results for each day
 export const generateDateSeed = (): string => {
@@ -117,6 +118,44 @@ export const formatShareResult = (
     const resultEmojis = Object.values(result).map((r) => emojis[r]).join("");
     shareText += `${resultEmojis}\n`;
   });
+  
+  return shareText;
+};
+
+// Format combined results to share
+export const formatCombinedShareResult = (
+  gameCompletionStatus: { male: boolean; female: boolean; nickname: boolean; lastUpdated: string },
+  maleStats: GameStats,
+  femaleStats: GameStats, 
+  nicknameScore: number
+): string => {
+  const currentDate = generateDateSeed();
+  let shareText = `📊 UFC Fighter Guessing Games - ${currentDate} 📊\n\n`;
+  
+  // Add male game results
+  if (gameCompletionStatus.male) {
+    const maleFighterResult = maleStats.lastPlayedDate === currentDate && maleStats.gamesPlayed > 0
+      ? (maleStats.gamesWon > 0 ? `✅ (${Object.values(maleStats.guessDistribution).findIndex(val => val > 0) + 1}/6)` : "❌")
+      : "❓";
+      
+    shareText += `👨 Male Fighter: ${maleFighterResult}\n`;
+  }
+  
+  // Add female game results  
+  if (gameCompletionStatus.female) {
+    const femaleFighterResult = femaleStats.lastPlayedDate === currentDate && femaleStats.gamesPlayed > 0
+      ? (femaleStats.gamesWon > 0 ? `✅ (${Object.values(femaleStats.guessDistribution).findIndex(val => val > 0) + 1}/6)` : "❌")
+      : "❓";
+      
+    shareText += `👩 Female Fighter: ${femaleFighterResult}\n`;
+  }
+  
+  // Add nickname game results
+  if (gameCompletionStatus.nickname) {
+    shareText += `📝 Nickname Game: ${nicknameScore}/7\n`;
+  }
+  
+  shareText += "\nPlay at GuessTheFighter.com";
   
   return shareText;
 };
