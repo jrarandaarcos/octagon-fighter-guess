@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, HelpCircle } from 'lucide-react';
 import { generateDateSeed } from '@/utils/gameUtils';
+import GameNavigation from '@/components/GameNavigation';
 
 const NicknameGame: React.FC = () => {
   const navigate = useNavigate();
@@ -282,6 +282,8 @@ const NicknameGame: React.FC = () => {
             )}
           </div>
         </main>
+        
+        <GameNavigation />
         
         <footer className="border-t border-gray-800 py-4">
           <div className="max-w-3xl mx-auto px-4">

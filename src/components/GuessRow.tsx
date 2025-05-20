@@ -3,6 +3,12 @@ import React from 'react';
 import { Fighter } from '../data/fighters';
 import { cn } from '@/lib/utils';
 import { ArrowDown, ArrowUp } from 'lucide-react';
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
 
 interface GuessRowProps {
   fighter?: Fighter;
@@ -36,41 +42,53 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
 
   return (
     <div className="grid grid-cols-5 gap-2 w-full">
-      {attributesToShow.map(({ key, value }) => {
-        const cellResult = result[key] || 'incorrect';
-        const cellClasses = {
-          'correct': 'cell-correct',
-          'close': 'cell-close',
-          'incorrect': 'cell-incorrect',
-        };
-        
-        // Show year indicator for debut year when it's not correct and target year is available
-        const showYearIndicator = key === 'debutYear' && cellResult !== 'correct' && targetYear !== undefined;
-        
-        return (
-          <div
-            key={key}
-            className={cn(
-              "h-12 border rounded flex items-center justify-center p-1 text-center text-xs md:text-sm transition-colors duration-300",
-              cellClasses[cellResult]
-            )}
-            title={String(value)}
-          >
-            <div className="flex items-center justify-center gap-1">
-              <span className={showYearIndicator ? "mr-1" : "px-1"}>{value}</span>
-              {showYearIndicator && (
-                <>
-                  {Number(value) < targetYear ? (
-                    <ArrowUp className="text-black stroke-[3] w-5 h-5" />
-                  ) : (
-                    <ArrowDown className="text-black stroke-[3] w-5 h-5" />
+      <TooltipProvider>
+        {attributesToShow.map(({ key, value }) => {
+          const cellResult = result[key] || 'incorrect';
+          const cellClasses = {
+            'correct': 'cell-correct',
+            'close': 'cell-close',
+            'incorrect': 'cell-incorrect',
+          };
+          
+          // Show year indicator for debut year when it's not correct and target year is available
+          const showYearIndicator = key === 'debutYear' && cellResult !== 'correct' && targetYear !== undefined;
+          
+          return (
+            <Tooltip key={key}>
+              <TooltipTrigger asChild>
+                <div
+                  className={cn(
+                    "h-12 border rounded flex items-center justify-center p-1 text-center text-xs md:text-sm transition-colors duration-300",
+                    cellClasses[cellResult]
                   )}
-                </>
-              )}
-            </div>
-          </div>
-        );
-      })}
+                >
+                  <div className="flex items-center justify-center gap-1 w-full">
+                    <span className={cn(
+                      "truncate max-w-full", 
+                      showYearIndicator ? "mr-1" : "px-1"
+                    )}>
+                      {value}
+                    </span>
+                    {showYearIndicator && (
+                      <>
+                        {Number(value) < targetYear ? (
+                          <ArrowUp className="text-black stroke-[3] w-5 h-5 flex-shrink-0" />
+                        ) : (
+                          <ArrowDown className="text-black stroke-[3] w-5 h-5 flex-shrink-0" />
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                {String(value)}
+              </TooltipContent>
+            </Tooltip>
+          );
+        })}
+      </TooltipProvider>
     </div>
   );
 };

@@ -64,7 +64,7 @@ const FinalShareDialog: React.FC<FinalShareDialogProps> = ({ open, onOpenChange 
             </p>
           </div>
           
-          <div className="bg-muted p-3 rounded font-mono whitespace-pre-wrap text-sm">
+          <div className="bg-muted p-3 rounded font-mono whitespace-pre-wrap text-sm overflow-auto max-h-60">
             {shareText}
           </div>
           

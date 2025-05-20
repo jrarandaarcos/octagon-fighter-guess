@@ -24,3 +24,9 @@ export interface GameCompletionStatus {
   nickname: boolean;
   lastUpdated: string;
 }
+
+export interface GameNavigation {
+  nextGameType: 'male' | 'female' | 'nickname' | null;
+  nextGamePath: string | null;
+  nextGameText: string | null;
+}

@@ -1,9 +1,9 @@
-
 import React from 'react';
 import GameHeader from '@/components/GameHeader';
 import GameBoard from '@/components/GameBoard';
 import GameInput from '@/components/GameInput';
 import GameResult from '@/components/GameResult';
+import GameNavigation from '@/components/GameNavigation';
 import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -41,13 +41,12 @@ const FemaleFightersGame = () => {
       <div className="flex flex-col min-h-screen">
         <GameHeader subtitle="Women Fighters Edition" />
         
-        {/* Navigation removed - will be shown via GameResult instead */}
-        
         <main className="flex-1 flex flex-col">
           <div className="max-w-3xl w-full mx-auto p-2 flex-1 flex flex-col">
             <GameBoard />
             <GameInput gameType="female" />
             <GameResult />
+            <GameNavigation />
           </div>
         </main>
         

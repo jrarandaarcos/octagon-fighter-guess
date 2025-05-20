@@ -2,6 +2,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ArrowDown, ArrowUp } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface HelpDialogProps {
   open: boolean;
@@ -15,74 +16,77 @@ const HelpDialog: React.FC<HelpDialogProps> = ({ open, onOpenChange }) => {
         <DialogHeader>
           <DialogTitle>How to Play UFCdle</DialogTitle>
           <DialogDescription>
-            Guess the UFC fighter in 6 tries. A new fighter available each day!
+            Guess the UFC fighter in 6 tries.
           </DialogDescription>
         </DialogHeader>
         
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-bold mb-1">Game Rules:</h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
-              <li>Each guess must be a valid UFC fighter from our database</li>
-              <li>After each guess, you'll get feedback on how close you are</li>
-              <li>You have 6 attempts to guess the correct fighter</li>
-              <li>A new fighter is available each day at midnight</li>
-            </ul>
-          </div>
+        <Tabs defaultValue="basics">
+          <TabsList className="grid grid-cols-2 mb-4">
+            <TabsTrigger value="basics">Basics</TabsTrigger>
+            <TabsTrigger value="details">Details</TabsTrigger>
+          </TabsList>
           
-          <div>
-            <h3 className="font-bold mb-1">Feedback Colors:</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-green-600 rounded"></div>
-                <span>Green: Correct attribute</span>
+          <TabsContent value="basics" className="space-y-4">
+            <ul className="list-disc pl-5 text-sm space-y-1">
+              <li>Each guess must be a valid UFC fighter</li>
+              <li>You have 6 attempts to guess correctly</li>
+              <li>A new fighter is available daily at midnight</li>
+              <li>Color codes show how close your guess is:</li>
+            </ul>
+            
+            <div className="grid grid-cols-3 gap-2 text-sm">
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4 bg-green-600 rounded"></div>
+                <span>Correct</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-yellow-500 rounded"></div>
-                <span>Yellow: Close attribute (only for Debut Year)</span>
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+                <span>Close</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-red-600 rounded"></div>
-                <span>Red: Incorrect attribute</span>
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4 bg-red-600 rounded"></div>
+                <span>Wrong</span>
               </div>
             </div>
-          </div>
+          </TabsContent>
           
-          <div>
-            <h3 className="font-bold mb-1">Debut Year Hints:</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
-                  <span className="text-black font-medium mr-1">2015</span>
-                  <ArrowUp size={20} className="text-black font-bold stroke-[3]" />
+          <TabsContent value="details" className="space-y-4">
+            <div>
+              <h3 className="font-bold mb-1">Debut Year Hints:</h3>
+              <div className="space-y-1 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
+                    <span className="text-black mr-1">2015</span>
+                    <ArrowUp size={16} className="text-black stroke-[3]" />
+                  </div>
+                  <span>Too early - fighter debuted later</span>
                 </div>
-                <span>Your guess is too low - fighter debuted later</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
-                  <span className="text-black font-medium mr-1">2015</span>
-                  <ArrowDown size={20} className="text-black font-bold stroke-[3]" />
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center px-2 py-1 bg-yellow-500 rounded">
+                    <span className="text-black mr-1">2015</span>
+                    <ArrowDown size={16} className="text-black stroke-[3]" />
+                  </div>
+                  <span>Too late - fighter debuted earlier</span>
                 </div>
-                <span>Your guess is too high - fighter debuted earlier</span>
               </div>
             </div>
-          </div>
-          
-          <div>
-            <h3 className="font-bold mb-1">Attributes:</h3>
-            <ul className="list-disc pl-5 text-sm space-y-1">
-              <li>Name: The fighter's full name</li>
-              <li>Country: Fighter's nationality</li>
-              <li>Division: Fighter's weight class</li>
-              <li>Debut Year: Year of UFC debut</li>
-              <li>Debut Event: First UFC event</li>
-            </ul>
-          </div>
-          
-          <p className="text-sm text-muted-foreground">
-            A hint will be provided after 3 failed attempts to help you narrow down your search.
-          </p>
-        </div>
+            
+            <div>
+              <h3 className="font-bold mb-1">Attributes Checked:</h3>
+              <ul className="list-disc pl-5 text-sm space-y-1">
+                <li><b>Name:</b> Fighter's full name</li>
+                <li><b>Country:</b> Fighter's nationality</li>
+                <li><b>Division:</b> Fighter's weight class</li>
+                <li><b>Debut Year:</b> Year of UFC debut</li>
+                <li><b>Debut Event:</b> First UFC event</li>
+              </ul>
+            </div>
+            
+            <p className="text-xs text-muted-foreground">
+              After 3 failed attempts, a hint will be provided.
+            </p>
+          </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   );

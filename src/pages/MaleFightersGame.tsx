@@ -1,9 +1,9 @@
-
 import React from 'react';
 import GameHeader from '@/components/GameHeader';
 import GameBoard from '@/components/GameBoard';
 import GameInput from '@/components/GameInput';
 import GameResult from '@/components/GameResult';
+import GameNavigation from '@/components/GameNavigation';
 import { Button } from '@/components/ui/button';
 import { BarChart2, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -54,6 +54,7 @@ const MaleFightersGame = () => {
             <GameBoard />
             <GameInput gameType="male" />
             <GameResult />
+            <GameNavigation />
           </div>
         </main>
         
