@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 @tailwind base;
@@ -103,17 +102,20 @@
   
   .cell-correct {
     @apply bg-green-600 text-white border-green-700 font-medium shadow-inner;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
   }
   
   .cell-close {
     @apply bg-yellow-500 text-black border-yellow-600 font-medium shadow-inner;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.3);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
   }
   
   .cell-incorrect {
     @apply bg-red-600 text-white border-red-700 font-medium shadow-inner;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
   }
   
   .cell-empty {

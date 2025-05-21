@@ -43,10 +43,10 @@ const GameNavigation: React.FC = () => {
     <div className="fixed bottom-20 left-0 right-0 flex justify-center z-50 px-4">
       <Button 
         onClick={() => navigate(nextGame.path)}
-        className="bg-green-600 hover:bg-green-700 text-white shadow-lg"
+        className="bg-green-600 hover:bg-green-700 text-white shadow-lg text-lg py-6"
         size="lg"
       >
-        {nextGame.text} <ArrowRight size={16} className="ml-2" />
+        {nextGame.text} <ArrowRight size={20} className="ml-2" />
       </Button>
     </div>
   );

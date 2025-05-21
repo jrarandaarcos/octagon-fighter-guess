@@ -59,13 +59,13 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
               <TooltipTrigger asChild>
                 <div
                   className={cn(
-                    "h-12 border rounded flex items-center justify-center p-1 text-center text-xs md:text-sm transition-colors duration-300",
+                    "h-12 border rounded flex items-center justify-center p-1 text-center text-sm md:text-base transition-colors duration-300",
                     cellClasses[cellResult]
                   )}
                 >
                   <div className="flex items-center justify-center gap-1 w-full">
                     <span className={cn(
-                      "truncate max-w-full", 
+                      "truncate max-w-[85%]", 
                       showYearIndicator ? "mr-1" : "px-1"
                     )}>
                       {value}
@@ -73,9 +73,9 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
                     {showYearIndicator && (
                       <>
                         {Number(value) < targetYear ? (
-                          <ArrowUp className="text-black stroke-[3] w-5 h-5 flex-shrink-0" />
+                          <ArrowUp className="text-white stroke-[3] w-5 h-5 flex-shrink-0" />
                         ) : (
-                          <ArrowDown className="text-black stroke-[3] w-5 h-5 flex-shrink-0" />
+                          <ArrowDown className="text-white stroke-[3] w-5 h-5 flex-shrink-0" />
                         )}
                       </>
                     )}
