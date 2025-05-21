@@ -18,18 +18,19 @@ interface GuessRowProps {
 }
 
 const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear, showHeaders = false }) => {
-  // Map of attributes to show - removed debutEvent
+  // Map of attributes to show - added fightingStyle
   const attributesToShow = [
     { key: 'name', label: 'Name', value: fighter?.name || '' },
     { key: 'country', label: 'Country', value: fighter?.country || '' },
     { key: 'division', label: 'Division', value: fighter?.division || '' },
     { key: 'debutYear', label: 'Debut Year', value: fighter?.debutYear || '' },
+    { key: 'fightingStyle', label: 'Fighting Style', value: fighter?.fightingStyle || '' },
   ];
 
   // If we need to display headers only
   if (showHeaders) {
     return (
-      <div className="grid grid-cols-4 gap-2 w-full mb-2">
+      <div className="grid grid-cols-5 gap-2 w-full mb-2">
         {attributesToShow.map(({ key, label }) => (
           <div 
             key={`header-${key}`}
@@ -45,8 +46,8 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear, showHe
   // If no fighter, render empty row
   if (!fighter || !result) {
     return (
-      <div className="grid grid-cols-4 gap-2 w-full">
-        {['name', 'country', 'division', 'debutYear'].map((attr) => (
+      <div className="grid grid-cols-5 gap-2 w-full">
+        {['name', 'country', 'division', 'debutYear', 'fightingStyle'].map((attr) => (
           <div 
             key={attr}
             className="cell-empty h-12 border rounded flex items-center justify-center"
@@ -57,7 +58,7 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear, showHe
   }
 
   return (
-    <div className="grid grid-cols-4 gap-2 w-full">
+    <div className="grid grid-cols-5 gap-2 w-full">
       <TooltipProvider>
         {attributesToShow.map(({ key, value }) => {
           const cellResult = result[key] || 'incorrect';
