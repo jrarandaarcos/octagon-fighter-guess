@@ -20,8 +20,8 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
   // If no fighter, render empty row
   if (!fighter || !result) {
     return (
-      <div className="grid grid-cols-5 gap-2 w-full">
-        {['name', 'country', 'division', 'debutYear', 'debutEvent'].map((attr) => (
+      <div className="grid grid-cols-4 gap-2 w-full">
+        {['name', 'country', 'division', 'debutYear'].map((attr) => (
           <div 
             key={attr}
             className="cell-empty h-12 border rounded flex items-center justify-center"
@@ -31,17 +31,16 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
     );
   }
 
-  // Map of attributes to show
+  // Map of attributes to show - removed debutEvent
   const attributesToShow = [
     { key: 'name', label: 'Name', value: fighter.name },
     { key: 'country', label: 'Country', value: fighter.country },
     { key: 'division', label: 'Division', value: fighter.division },
     { key: 'debutYear', label: 'Debut Year', value: fighter.debutYear },
-    { key: 'debutEvent', label: 'Debut Event', value: fighter.debutEvent },
   ];
 
   return (
-    <div className="grid grid-cols-5 gap-2 w-full">
+    <div className="grid grid-cols-4 gap-2 w-full">
       <TooltipProvider>
         {attributesToShow.map(({ key, value }) => {
           const cellResult = result[key] || 'incorrect';
@@ -59,13 +58,13 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
               <TooltipTrigger asChild>
                 <div
                   className={cn(
-                    "h-12 border rounded flex items-center justify-center p-1 text-center text-sm md:text-base transition-colors duration-300",
+                    "h-12 border rounded flex items-center justify-center p-2 text-center transition-colors duration-300",
                     cellClasses[cellResult]
                   )}
                 >
                   <div className="flex items-center justify-center gap-1 w-full">
                     <span className={cn(
-                      "truncate max-w-[85%]", 
+                      "text-xs xs:text-sm sm:text-base md:text-lg", 
                       showYearIndicator ? "mr-1" : "px-1"
                     )}>
                       {value}
