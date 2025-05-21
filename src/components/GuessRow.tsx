@@ -14,9 +14,34 @@ interface GuessRowProps {
   fighter?: Fighter;
   result?: {[key: string]: "correct" | "close" | "incorrect"};
   targetYear?: number;
+  showHeaders?: boolean;
 }
 
-const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
+const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear, showHeaders = false }) => {
+  // Map of attributes to show - removed debutEvent
+  const attributesToShow = [
+    { key: 'name', label: 'Name', value: fighter?.name || '' },
+    { key: 'country', label: 'Country', value: fighter?.country || '' },
+    { key: 'division', label: 'Division', value: fighter?.division || '' },
+    { key: 'debutYear', label: 'Debut Year', value: fighter?.debutYear || '' },
+  ];
+
+  // If we need to display headers only
+  if (showHeaders) {
+    return (
+      <div className="grid grid-cols-4 gap-2 w-full mb-2">
+        {attributesToShow.map(({ key, label }) => (
+          <div 
+            key={`header-${key}`}
+            className="font-bold text-center text-xs xs:text-sm md:text-base"
+          >
+            {label}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  
   // If no fighter, render empty row
   if (!fighter || !result) {
     return (
@@ -30,14 +55,6 @@ const GuessRow: React.FC<GuessRowProps> = ({ fighter, result, targetYear }) => {
       </div>
     );
   }
-
-  // Map of attributes to show - removed debutEvent
-  const attributesToShow = [
-    { key: 'name', label: 'Name', value: fighter.name },
-    { key: 'country', label: 'Country', value: fighter.country },
-    { key: 'division', label: 'Division', value: fighter.division },
-    { key: 'debutYear', label: 'Debut Year', value: fighter.debutYear },
-  ];
 
   return (
     <div className="grid grid-cols-4 gap-2 w-full">

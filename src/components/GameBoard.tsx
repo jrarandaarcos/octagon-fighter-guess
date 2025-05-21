@@ -26,6 +26,9 @@ const GameBoard: React.FC = () => {
   return (
     <div className="w-full max-w-3xl mx-auto p-4">
       <div className="space-y-2">
+        {/* Column Headers */}
+        <GuessRow showHeaders={true} />
+        
         {/* Guessed rows */}
         {guesses.map((guess, index) => (
           <GuessRow
